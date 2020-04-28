@@ -16,7 +16,7 @@ Infrastructure that collects data from sensors/Internet, processes it using Mach
 
 
 ## Technology:
-IoT sensors
-External API
-Cloud Machine Learning
+- IoT sensors
+- External API
+- Cloud Machine Learning
 
