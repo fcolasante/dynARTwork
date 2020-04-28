@@ -2,9 +2,9 @@
 The document needs to describe the evaluation methodology for both the overall system as well as each individual components for the technical/user dimensions, e.g. by defining specific performance indicators that will be measured, tools that will be used.
 
 In particular, we will evaluate 3 different aspects: 
-1 - Conversion rate
-2 - User experience
-3 - Technical part
+1. Conversion rate
+2. User experience
+3. Technical part
 
 ## Conversion rate
 We will build a landing page where we have a value proposition describing our product  with a Call To Action (CTA).
@@ -20,8 +20,8 @@ Generally, we can have 2 types of customers:
 - Demand aware: they are actively trying to solve the problem
 
 We will use:
-- Latent demand: Facebook ADS to find our dimensions (setting charateristic of our buyer Persona)
-- Demand aware: [Ubersuggest](https://neilpatel.com/ubersuggest/) o [AnswerThePublic](https://answerthepublic.com/). 
+--  Latent demand: Facebook ADS to find our dimensions (setting charateristic of our buyer Persona)
+--  Demand aware: [Ubersuggest](https://neilpatel.com/ubersuggest/) o [AnswerThePublic](https://answerthepublic.com/). 
 
 
 ## User Experience
@@ -75,5 +75,11 @@ From a technical point of view, we will analyze several aspects:
 - **Money**: How much does our cloud based service cost us by using Machine Learning on Google cloud platform.
 - **Easy installation**: How long does configuration and deployment take for a fresh installation.
 - **Installation scalability**: If the installation requires specialized technicians or once configured, the installation managers can install the devices themselves.
-- Possibility of OTA updates to monitor the product remotely
+- Possibility of OTA updates to monitor the product remotely.
+
+In order to test our solution, we will proceed in this way:
+1. Input part: tested on IoTLab
+2. Core part: (ML + DB) deployed on Google Cloud Platform
+3. Artist Webapp: developed using Angular+Firebase and deployed on Firebase Hosting
+4. Output part: (Nucleo: -> HDMI -> Projector) not tested in real environment. We will draw up the output stream (digital artwork) on the artist screen.
 
