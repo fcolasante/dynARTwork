@@ -10,8 +10,8 @@ Our architecture is composed by 4 main parts:
 1. **Sensors** (IoT elements) : It is the input of our DynARTwork algorithm. We will use IoT-devices to collects informations in the Museum.
 2. **Cloud components**: We will use the Cloud to collect our informations: sensors and artist setup to build the DynArtwork.
 3. **Artists' webapp** (End-user components): This part will be used by the artists. It will have a simple UI/UX interface to hide all tech detail in order
-to permit artists to build their DyArtwork not worrying about technical details.
-4. **Actuators** (IoT elemets): We will create an IoT devices which pull DynArtwork from the Cloud (ex. RTMP/RSTP) and it will redirect this stream to the HDMI output where the museum projector will be connected.
+to permit artists to build their DyARTwork not worrying about technical details.
+4. **Actuators** (IoT elemets): We will create an IoT devices which pull DynARTwork from the Cloud (ex. RTMP/RSTP) and it will redirect this stream to the HDMI output where the museum projector will be connected.
 
 
 ## Sensors:
