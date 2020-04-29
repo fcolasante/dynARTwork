@@ -9,21 +9,23 @@ providing details on the technical aspects of the product/service, including a h
 Our architecture is composed by 4 main parts:
 1. **Sensors** (IoT elements) : It is the input of our DynArtwork algorithm. We will use IoT-devices to collects informations in the Museum.
 2. **Cloud components**: We will use the Cloud to collect our informations: sensors and artist setup to build the DynArtwork.
-3. **Artists' webapp** (End-user components): This part will be used by the artists. It will have a simple UI/UX interface to hide all tech detail in order
+3. **Artists' WebApp** (End-user components): This part will be used by the artists. It will have a simple UI/UX interface to hide all tech detail in order. 
 to permit artists to build their DyArtwork not worrying about technical details.
-4. **Actuators** (IoT elemets): We will create an IoT devices which pull DynArtwork from the Cloud (ex. RTMP/RSTP) and it will redirect this stream to the HDMI output where the museum projector will be connected.
+We will uses Angular + [Material](https://material.angular.io/) + Firebase to create easily a [PWA](https://web.dev/progressive-web-apps/). It will be responsive and it will be immediately ready for Android / IOs and on the web.
+
+4. **Actuators** (IoT elemets): We will create an IoT devices which pull DynArtwork from the Cloud (ex. [RTMP](https://en.wikipedia.org/wiki/Real-Time_Messaging_Protocol) /[RSTP](https://en.wikipedia.org/wiki/Real_Time_Streaming_Protocol)/[NDI](https://en.wikipedia.org/wiki/Network_Device_Interface)) and it will redirect this stream to the HDMI output where the museum projector will be connected.
 
 
 ## Sensors:
 - Thermal camera, temperature, humidity,....
-- External data (API), internally but in another places(ex. Rome)
+- External data (example: [Air Quality Programmatic APIs](https://aqicn.org/api/))
 - Simulated data/IoT-Lab
 
 ## Actuators:
-- Projector/monitor
-- Sound
-- Smell: [Product](http://www.emhealia.com/em-station/) [History](https://www.linkedin.com/pulse/da-zero-prodotto-francesco-colasante/) 
-- Video-Mapping?
+- Projector/monitor: HDMI
+- Sound: Jack
+- Smell: API [Product](http://www.emhealia.com/em-station/) [History](https://www.linkedin.com/pulse/da-zero-prodotto-francesco-colasante/) 
+- Video-Mapping: [NDI](https://en.wikipedia.org/wiki/Network_Device_Interface)
 
 
 ## Technology:
