@@ -1,7 +1,7 @@
 # Architecture
 Infrastructure that collects data from sensors/Internet, processes it using Machine Learning and shows the output using video/sound/smell.
 
-![](assets/architecture.svg)
+![](assets/architecture.png)
 
 
 
