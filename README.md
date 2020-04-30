@@ -5,6 +5,10 @@
 - Simone Di Tanna, ditanna.1765243@studenti.uniroma1.it, GitHub: [sditanna](http://github.com/sditanna)
 - Emanuele Santo Iaia, iaia.1924549@studenti.uniroma1.it, GitHub: [Lelito-IAIA](http://github.com/Lelito-IAIA), [Linkedin](https://www.linkedin.com/in/emanuele-santo-iaia-4315411a2/)
 
+
+**Design advisor**:[Pegah Pedramfar](https://www.linkedin.com/in/pegah-pedramfar-71a636101/)
+
+
 We want to distinguish ourselves from the two classic proposals: conservation of works of art, improvement of the visitor's user experience.
 We would like to create our work of art, or rather our generator of works of art.
 We think this is a way to attract visitors to the museum on a daily basis, as the artwork is dynamic and changes according to how the world changes.
