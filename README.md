@@ -12,4 +12,5 @@ We think this is a way to attract visitors to the museum on a daily basis, as th
 - [Design](./design.md)
 - [Architecture](./architecture.md)
 - [Evaluation](./evaluation.md)
-
+- [Explanation video on YouTube](https://www.youtube.com/watch?v=u6LoqptbMTY)
+- [Architecture video on YouTube](https://www.youtube.com/watch?v=5QkTi2bo70E)
