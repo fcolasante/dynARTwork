@@ -55,7 +55,6 @@ but reflecting on global warming due to innovation.
 ![](assets/Greta1.jpg)
 ## Storyboards
 
-![](assets/Francesco_Story1.jpg)
 ![](assets/Francesco_Story2.jpg)
 ![](assets/Francesco_Story3.jpg)
 ![](assets/Francesco_Story4.jpg)
