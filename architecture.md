@@ -25,6 +25,17 @@ We will use Angular + [Material](https://material.angular.io/) + Firebase to cre
 - Smell: API [Product](http://www.emhealia.com/em-station/) [History](https://www.linkedin.com/pulse/da-zero-prodotto-francesco-colasante/) 
 - Video-Mapping: [NDI](https://en.wikipedia.org/wiki/Network_Device_Interface)
 
+We evaluated the possibility of connecting HDMI directly to our [ST Nucleo Board](https://www.st.com/en/evaluation-tools/nucleo-f746zg.html#).
+
+![](./assets/nucleo_hdmi.png)
+
+- [How to display on HDMI](https://wiki.st.com/stm32mpu/wiki/How_to_display_on_HDMI)
+- [Nucleo datasheet](https://www.st.com/resource/en/data_brief/nucleo-f746zg.pdf)
+
+- [DSI to HDMI adapter](https://www.st.com/en/development-tools/b-lcdad-hdmi1.html). *if the card does not have an integrated connector*-
+
+
+
 
 ## Technology:
 - IoT sensors
