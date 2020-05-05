@@ -6,12 +6,12 @@ Infrastructure that collects data from sensors/Internet, processes it using Mach
 
 
 Our architecture is composed by 4 main parts:
-1. **Sensors** (IoT elements) : It is the input of our DynARTwork algorithm. We will use IoT-devices to collects informations in the Museum.
-2. **Cloud components**: We will use the Google Cloud Platform *(IoT Core, ML kit, Firestore, Hosting, Pub/Sub)* to collect our informations: sensors and artist setup to build the DynArtwork.
+1. **Sensors** (IoT elements) : It is the input of our DynARTwork algorithm. We will use IoT-devices performing RIOT-OS to collect informations in the Museum.
+2. **Cloud components**: We will use the Google Cloud Platform *(IoT Core, ML kit, Firestore, Hosting, Pub/Sub)* to collect and manipulate data.
 3. **Artists' WebApp** (End-user components): This part will be used by the artists. It will have a simple UI/UX interface to hide all tech detail in orderto permit artists to build their DyArtwork without worrying about technical details.
 We will use Angular + [Material](https://material.angular.io/) + Firebase to create easily a [PWA](https://web.dev/progressive-web-apps/). It will be responsive and it will be immediately ready for Android / iOS and on the web.
 
-4. **Actuators** (IoT elemets): We will create an IoT devices which pull DynArtwork from the Cloud (ex. [RTMP](https://en.wikipedia.org/wiki/Real-Time_Messaging_Protocol) /[RSTP](https://en.wikipedia.org/wiki/Real_Time_Streaming_Protocol)/[NDI](https://en.wikipedia.org/wiki/Network_Device_Interface)) and it will redirect this stream to the HDMI output where the museum projector will be connected.
+4. **Actuators** (IoT elemets): We will create an IoT device *(ST Nucleo board)* which pull DynArtwork from the Cloud (ex. [RTMP](https://en.wikipedia.org/wiki/Real-Time_Messaging_Protocol) /[RSTP](https://en.wikipedia.org/wiki/Real_Time_Streaming_Protocol)/[NDI](https://en.wikipedia.org/wiki/Network_Device_Interface)) and it will redirect this stream to the HDMI output where the museum projector will be connected.
 
 
 ## Sensors:
