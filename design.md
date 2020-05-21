@@ -1,6 +1,6 @@
 # Design
 
-## Product/Service from the user point of view
+## Service from the user point of view
 
 Francesco has to curate an exhibition at the MAXXI Museum in Rome.
 The theme of the exhibition is innovation in the modern age. He wants to create a work of art that highlights the negative aspects of innovation.
