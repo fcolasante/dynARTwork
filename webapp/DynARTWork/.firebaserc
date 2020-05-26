@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "dynartwork-277815": {
+      "hosting": {
+        "DynARTWork": [
+          "dynartwork-277815"
+        ]
+      }
+    }
+  }
+}
