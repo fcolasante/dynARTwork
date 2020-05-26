@@ -5,7 +5,7 @@
 We report some interviews carried out with artists of various levels:
 
 
-
+## Veronica, 24 yo 
 - Sarei molto interessata a utilizzare DynArtWork perchè da la possibilità anche ai nuovi artisti di farsi conoscere. Penso che sia un'idea rivoluzionaria perché, mettendo una piattaforma dove è possibile lasciare un feedback, la gente potrebbe lasciare commenti e siggerimenti per aiutare quindi l'artista a migliorarsi, inoltre porterebbe molta più gente alla scoperta dell'arte.
   A me piacerebbe utilizzare una Thermal Camera o un sensore per la  temperatura dell'ambiente, cosi da scoprire come la presenza di varie persone possa influenzare il cambiamento della mia opera.
   Non penso comunque che l'idea di rendere dinamica l'opera possa distogliere l'attenzione sul significato principale perché secondo me farà avvicinare molte più persone al mondo dell'arte, persone che non avrebbero mai pensato di entrare in un museo. La presenza di molte più persone secondo me porterà valorizzare l'opera d'arte.
@@ -15,7 +15,7 @@ We report some interviews carried out with artists of various levels:
 ---
 
 
-
+## Anthony, 25 yo
 - Credo sia una bellissima idea, da cui possono nascere grandi opere d’arte.
   “Tutto ciò che ci circonda e’ arte” mi piace pensare che non bisogna sempre seguire qualcosa di logico per creare un’opera che possa suscitare attenzione.
   Se dovessi creare un’opera utilizzando la vostra idea, sceglierei un mio giorno felice e magari accostarlo a un sensore che faccia da polo opposto o viceversa.
