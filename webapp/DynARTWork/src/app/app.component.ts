@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'DynARTWork';
+
+  setImageUrl(url: string) {
+    console.log(url);
+  }
+
 }
