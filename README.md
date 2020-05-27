@@ -19,3 +19,15 @@ We think this is a way to attract visitors to the museum on a daily basis, as th
 - [Explanation video on YouTube](https://www.youtube.com/watch?v=u6LoqptbMTY)
 - [Architecture video on YouTube](https://www.youtube.com/watch?v=5QkTi2bo70E)
 - [Presentation](https://docs.google.com/presentation/d/14FcAsv8RbBQgtHz-JDO1e33gRCXkLJ3kavpsDNRHOT4/edit?usp=sharing)
+
+
+## 2nd Delivery
+
+- [2nd_delivery](./2nd_delivery.md)
+### Updates
+- [Design](./design.md)
+- [Architecture](./architecture.md)
+- [Evaluation](./evaluation.md)
+### Presentations
+- [Evaluation Plan 2nd delivery](./Evaluation_Plan_2nd_delivery.pdf)
+- [Future Plans 2nd delivery](./Future_Plans_2nd_delivery.pdf)
