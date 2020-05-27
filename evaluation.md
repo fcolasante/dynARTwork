@@ -78,8 +78,8 @@ From a technical point of view, we will analyze several aspects:
 - Possibility of OTA updates to monitor the product remotely.
 
 In order to test our solution, we will proceed in this way:
-1. Input part: tested on IoTLab
-2. Core part: (ML + DB) deployed on Google Cloud Platform
-3. Artist Webapp: developed using Angular+Firebase and deployed on Firebase Hosting
-4. Output part: (Nucleo: -> HDMI -> Projector) not tested in real environment. We will draw up the output stream (digital artwork) on the artist screen.
+1. Input part: STM32MP157C board + Grid-Eye sensor
+2. Core part: deployed on Google Cloud Platform (IoT Core, Cloud Storage, Cloud Vision, AI Platform)
+3. Artist Webapp: developed using Angular+Firebase and deployed on Firebase Hosting using Magenta   arbitrary image stylization model
+4. Output part: (STM32MP157C: -> HDMI -> Projector) we use STM32MP157C that will be connected to a projector thanks to an hdmi cable.
 

@@ -1,7 +1,7 @@
 # Architecture
 Infrastructure that collects data from sensors/Internet, processes it using Machine Learning and shows the output using video/sound/smell.
 
-![](assets/architecture.png)
+![](assets/Architecture27-05.png)
 
 
 
@@ -25,7 +25,7 @@ We will use Angular + [Material](https://material.angular.io/) + Firebase to cre
 - Smell: API [Product](http://www.emhealia.com/em-station/) [History](https://www.linkedin.com/pulse/da-zero-prodotto-francesco-colasante/) 
 - Video-Mapping: [NDI](https://en.wikipedia.org/wiki/Network_Device_Interface)
 
-We evaluated the possibility of connecting HDMI directly to our [ST Nucleo Board](https://www.st.com/en/evaluation-tools/nucleo-f746zg.html#).
+We evaluated the possibility of connecting HDMI directly to our [ST Nucleo Board](https://www.st.com/en/microcontrollers-microprocessors/stm32mp157c.html).
 
 ![](./assets/nucleo_hdmi.png)
 
@@ -35,10 +35,8 @@ We evaluated the possibility of connecting HDMI directly to our [ST Nucleo Board
 - [DSI to HDMI adapter](https://www.st.com/en/development-tools/b-lcdad-hdmi1.html). *if the card does not have an integrated connector*-
 
 
-
-
 ## Technology:
-- IoT sensors
-- External API
-- Cloud Machine Learning
+- IoT sensors: eg. Grid-Eye.
+- External API: IoT Core, Cloud Storage, Cloud Vision, AI Platform.
+- Cloud Machine Learning: [arbitrary_image_stylization](https://github.com/tensorflow/magenta/tree/master/magenta/models/arbitrary_image_stylization).
 

@@ -14,12 +14,13 @@ For the architecture, the changes concern the suite of google cloud, in fact now
 
 - Evaluation plan:
 For the evaluation we evaluated all the opinions collected by the artists interviewed that suggest us to add sensors that allow visitors to be the proponents of the dynamism of the work of art. In addition, after receiving the STM32MP157C Board with an eye-grid sensor, testing can be done locally using real data thus eliminating the component of Iot lab.
-
+The model to be used will be [arbitrary_image_stylization](https://github.com/tensorflow/magenta/tree/master/magenta/models/arbitrary_image_stylization).
 
 ## Technical work done since the 1st delivery
 - We ordered the board and sensor we needed.
 - We started creating the webapp.
 - We have configured Google Cloud Platform and its components including Google Iot Core with which to manage the data coming from the board and Google AI with which to perform the modeling.
+- 
 
 
 ## Functionality still missing
