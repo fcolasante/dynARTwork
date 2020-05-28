@@ -1,1 +1,5 @@
 devices/virtual/env
+devices/credential
+*.pyc
+*.zip
+**/bin

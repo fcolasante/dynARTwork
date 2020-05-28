@@ -83,3 +83,9 @@ In order to test our solution, we will proceed in this way:
 3. Artist Webapp: developed using Angular+Firebase and deployed on Firebase Hosting
 4. Output part: (Nucleo: -> HDMI -> Projector) not tested in real environment. We will draw up the output stream (digital artwork) on the artist screen.
 
+## Offline part: done
+
+Abbiamo concluso la parte di evaluation offline. 
+Abbiamo intervistato 10 persone e questi sono i feedback:
+[Feedback](users_opinion.md)
+

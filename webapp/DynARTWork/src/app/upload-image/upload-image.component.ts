@@ -26,7 +26,7 @@ export class UploadImageComponent implements OnInit {
     this.isLoading = true;
     console.log(event);
     const file = event.target.files[0];
-    const filePath = `images/${this.nomeImage}`;
+    const filePath = `${file.name}`;
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
     console.log(file);
