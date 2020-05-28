@@ -1,4 +1,6 @@
-# dynARTwork
+# dynARTwork 
+<img src="assets/Logo.png" width=200 align=centre>
+
 
 **Team**:
 - Francesco Colasante, colasante.1760608@studenti.uniroma1.it, GitHub: [fcolasante](http://github.com/fcolasante), [Linkedin](https://www.linkedin.com/in/francesco-colasante/)
