@@ -34,6 +34,8 @@ On the other hand, We are happy because otherwise we would have used the Interne
 Finally, in the day of the exhibition, visitors will arrive and can enjoy the dynamic work we created without worrying about anything,
 but reflecting on global warming due to innovation.
 
+In the case of a museum such as the museum of Sapienza, which houses mostly statues, we could project on the statues themselves the result of a dynamic work to give life to them.
+
 
 ## User Personas
 ### Francesco

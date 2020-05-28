@@ -15,18 +15,20 @@ For the architecture, the changes concern the suite of google cloud, in fact now
 - Evaluation plan:
 For the evaluation we evaluated all the opinions collected by the artists interviewed that suggest us to add sensors that allow visitors to be the proponents of the dynamism of the work of art. In addition, after receiving the STM32MP157C Board with an eye-grid sensor, testing can be done locally using real data thus eliminating the component of Iot lab.
 
-
 ## Technical work done since the 1st delivery
 - We ordered the board and sensor we needed.
 - We started creating the webapp.
 - We have configured Google Cloud Platform and its components including Google Iot Core with which to manage the data coming from the board and Google AI with which to perform the modeling.
+- **For Testing**: for testing we used this [tutorial](https://cloud.google.com/run/docs/tutorials/pubsub?authuser=1) which allowed us to set Google Pub/Sub and this [tutorial](https://cloud.google.com/run/docs/tutorials/image-processing?authuser=1) for processing images from Cloud Storage tutorial. We also flashed an ESP board with RIOT-OS and with the help of a transparent bridge and mosquitto-rsmb to communicate the board with Google Iot Core.
 
 
 ## Functionality still missing
 - firebase configuration to accommodate all data from the device.
 - Grid eye sensors
+- Use of Machine Learning 
 
 
 ## Next evaluation
 
+The model to be used will be [arbitrary_image_stylization](https://github.com/tensorflow/magenta/tree/master/magenta/models/arbitrary_image_stylization).
 A very important part to assess will be the costs. Google AI allows us to run the model for Neural Style Transfer with Tensorflow using google machines with a cost of between € 90 and € 120 per month and an hourly rate of € 0.20. Therefore we will also have to evaluate the possibility of edge computing and then to run the model directly on the Board
