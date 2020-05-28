@@ -13,12 +13,19 @@ We want to distinguish ourselves from the two classic proposals: conservation of
 We would like to create our work of art, or rather our generator of works of art.
 We think this is a way to attract visitors to the museum on a daily basis, as the artwork is dynamic and changes according to how the world changes.
 
+## 1st Delivery
+
 - [Design](./design.md)
 - [Architecture](./architecture.md)
 - [Evaluation](./evaluation.md)
-- [Explanation video on YouTube](https://www.youtube.com/watch?v=u6LoqptbMTY)
-- [Architecture video on YouTube](https://www.youtube.com/watch?v=5QkTi2bo70E)
+### Presentations
 - [Presentation](https://docs.google.com/presentation/d/14FcAsv8RbBQgtHz-JDO1e33gRCXkLJ3kavpsDNRHOT4/edit?usp=sharing)
+- [Introduction](./DynARTwork_Introduction)
+- [Evaluation Plan](./DynArtWork_Evaluation_Plan)
+### Videos
+- [DynARTwork - The Idea](https://www.youtube.com/watch?v=u6LoqptbMTY)
+- [DynARTwork - Architecture](https://www.youtube.com/watch?v=5QkTi2bo70E)
+
 
 
 ## 2nd Delivery
@@ -31,3 +38,6 @@ We think this is a way to attract visitors to the museum on a daily basis, as th
 ### Presentations
 - [Evaluation Plan 2nd delivery](./Evaluation_Plan_2nd_delivery.pdf)
 - [Future Plans 2nd delivery](./Future_Plans_2nd_delivery.pdf)
+### Videos
+- [DynARTwork - Current evaluation](https://youtu.be/pHyfPaEfGqk)
+- [DynARTwork - Future plans](https://youtu.be/Mnt6pUkhF1Y)
