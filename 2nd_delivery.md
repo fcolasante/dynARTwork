@@ -31,6 +31,13 @@ For the evaluation we evaluated all the opinions collected by the artists interv
 - [YouTube video](https://youtu.be/IuAJRV1asrU)
 - [Web app](https://dynartwork-277815.web.app/)
 
+**Functionalities**:
+1. RIOT-OS on ESP32 with WiFi connection.
+2. ESP32 MQTT-SN -> Transparent Bridge -> Google IoT Core
+3. Upload image from PWA to Google Storage.
+4. Process images async using Cloud Run and Cloud Vision API
+5. Fetch processed image with Python on STM32MPU board.
+
 ## Next evaluation
 
 The model to be used will be [arbitrary_image_stylization](https://github.com/tensorflow/magenta/tree/master/magenta/models/arbitrary_image_stylization).
