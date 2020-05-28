@@ -31,6 +31,9 @@ For the evaluation we evaluated all the opinions collected by the artists interv
 - [YouTube video](https://youtu.be/IuAJRV1asrU)
 - [Web app](https://dynartwork-277815.web.app/)
 
+![](assets/schematics.jpg)
+![](assets/webapp.png)
+
 **Functionalities**:
 1. RIOT-OS on ESP32 with WiFi connection.
 2. ESP32 MQTT-SN -> Transparent Bridge -> Google IoT Core

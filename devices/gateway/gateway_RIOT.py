@@ -35,7 +35,8 @@ class Callback:
 #function modified to directly forward messages from devices to google
   def messageArrived(self, topicName, payload, qos, retained, msgid):
     print "Recived data from device:", payload
-    google_client.publish(mqtt_topic, payload, qos=0)
+    res = google_client.publish(mqtt_topic, payload, qos=0)
+    print(res)
     return True
 
   def deliveryComplete(self, msgid):

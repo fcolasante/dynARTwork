@@ -4,3 +4,4 @@ devices/credential
 *.zip
 **/bin
 devices/reader/*.json
+devices/bridge/mysecrets.py
