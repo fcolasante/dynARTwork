@@ -27,6 +27,9 @@ For the evaluation we evaluated all the opinions collected by the artists interv
 - Grid eye sensors
 - Use of Machine Learning 
 
+# Live demo
+- [YouTube video](https://youtu.be/IuAJRV1asrU)
+- [Web app](https://dynartwork-277815.web.app/)
 
 ## Next evaluation
 

@@ -3,3 +3,4 @@ devices/credential
 *.pyc
 *.zip
 **/bin
+devices/reader/*.json

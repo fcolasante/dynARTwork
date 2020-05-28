@@ -5,7 +5,7 @@ storage_client = storage.Client.from_service_account_json('dynartwork-277815-fir
 bucket = storage_client.get_bucket('processed_artworks')
 # get bucket data as blob
 
-blob = bucket.get_blob('zombie.jpg')
+blob = bucket.get_blob('test.jpg')
 # convert to stringfil
 json_data = blob.download_as_string()
 
