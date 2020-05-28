@@ -52,3 +52,11 @@ The model to be used will be [arbitrary_image_stylization](https://github.com/te
 A very important part to assess will be the costs. Google AI allows us to run the model for Neural Style Transfer with Tensorflow using google machines with a cost of between € 90 and € 120 per month and an hourly rate of € 0.20. Therefore we will also have to evaluate the possibility of edge computing and then to run the model directly on the Board.
 
 We will evaluate the ease of use of the web app, to facilitate the artists uploading photos and configuration.
+
+### Presentations
+- [Evaluation Plan 2nd delivery](./Evaluation_Plan_2nd_delivery.pdf)
+- [Future Plans 2nd delivery](./Future_Plans_2nd_delivery.pdf)
+### Videos
+- [DynARTwork - Current evaluation](https://youtu.be/pHyfPaEfGqk)
+- [DynARTwork - Future plans](https://youtu.be/Mnt6pUkhF1Y)
+- [Live Demo](https://youtu.be/IuAJRV1asrU)
