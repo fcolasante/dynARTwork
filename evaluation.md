@@ -85,7 +85,7 @@ In order to test our solution, we will proceed in this way:
 
 ## Offline part: done
 
-Abbiamo concluso la parte di evaluation offline. 
-Abbiamo intervistato 10 persone e questi sono i feedback:
+We have completed the offline evaluation part.
+We interviewed 10 people and these are the feedbacks:
 [Feedback](users_opinion.md)
 
