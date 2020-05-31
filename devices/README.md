@@ -7,3 +7,9 @@ python3 cloudiot_mqtt_example.py --algorithm=RS256 --device_id=virtual_1 --regis
 ```
 
 
+https://cloud.google.com/container-registry/docs/advanced-authentication
+```
+gcloud auth configure-docker
+
+```
+
