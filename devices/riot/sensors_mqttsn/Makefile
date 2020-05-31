@@ -5,7 +5,7 @@ APPLICATION = sensors_mqttsn
 BOARD ?= native
 
 # This has to be the absolute path to the RIOT base directory:
-RIOTBASE ?= /media/frank/Dati/university/iot/hands-on/Tutorials/RIOT
+RIOTBASE ?= /media/frank/Dati/university/iot/RIOT
 #RIOTBASE ?= $(CURDIR)/../..
 
 BOARD_INSUFFICIENT_MEMORY := arduino-duemilanove arduino-mega2560 arduino-nano \
@@ -43,7 +43,9 @@ endif
 
 
 USEMODULE += saul_default #sensors 
-
+USEMODULE += xtimer
+USEMODULE += i2c_scan
+FEATURES_REQUIRED += periph_i2c
 # Comment this out to disable code in RIOT that does safety checking
 # which is not needed in a production environment but helps in the
 # development process:

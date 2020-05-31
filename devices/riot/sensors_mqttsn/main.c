@@ -24,7 +24,8 @@
 #include <stdlib.h>
 #include <time.h>
 
-
+#include "periph_conf.h"
+#include "periph/i2c.h"
 #include "shell.h"
 #include "msg.h"
 #include "net/emcute.h"
@@ -32,6 +33,15 @@
 
 #include "thread.h"
 #include "xtimer.h"
+
+#include "GridEYE.h"
+ 
+#include "jsmn.h"
+
+#define I2C_INTERFACE I2C_DEV(0)
+
+#define SENSOR_ADDR (0x68)
+#define INTERVAL (5000000U)
 
 #define SENSORS 0
 #define UNUSED(x) (void)(x)
@@ -47,9 +57,9 @@
 
 #define NUMOFSUBS           (16U)
 #define TOPIC_MAXLEN        (64U)
-#define TOPIC_STD           ("v1/gateway/telemetry")
+#define TOPIC_STD           ("sensors-topic")
 #define MSG_LEN             (512) //CHECK
-#define MSG_PROTO           "{ '%s': [ { 'ts': %llu000, 'values':{'%s': %d,'%s': %d,'%s': %d,'%s': %d,'%s': %d } }]}"
+#define MSG_PROTO           "{ 'name': '%s'}" //"{ 'name': '%s', 'values': ['%d', '%d', '%d', '%d', '%d'] }"
 
 #define MIN_TEMPERATURE -50
 #define MAX_TEMPERATURE 50
@@ -67,6 +77,7 @@ static msg_t queue[8];
 static emcute_sub_t subscriptions[NUMOFSUBS];
 static char topics[NUMOFSUBS][TOPIC_MAXLEN];
 static char device_name[TOPIC_MAXLEN];
+
 
 static void *emcute_thread(void *arg)
 {
@@ -311,13 +322,26 @@ static int cmd_telemetry(int argc, char ** argv){
         puts("error: unable to obtain topic ID");
         return 1;
     }
+    i2c_t dev = I2C_DEV(0);
+    i2c_acquire(dev);
+    uint8_t data[128];
+    int retval = i2c_read_regs(dev, 0x68, 0x80,data, 128, 0);
+    i2c_release(dev);
+    printf("Retval=%d\n", retval);
+    int col;
+    int result[64];
+    for(int i = 0, col = 0; i<128;i+=2, col++){
+        uint8_t raw = data[i];
+        uint tmp = (uint8_t) raw*0.25;
+        result[col] = tmp;
+        //printf("i=%d, raw = %u, tmp = %u\n", i, raw, tmp);
+        printf("%d ", tmp);
+        if((col+1)%8==0) printf("\n");
+    }
+
     char buffer[MSG_LEN];
-    snprintf(buffer, MSG_LEN, MSG_PROTO, device_name, (unsigned long long int)time(NULL),
-                "temperature", rand() % (MAX_TEMPERATURE + 1 - MIN_TEMPERATURE) + MIN_TEMPERATURE,
-                "humidity", rand() % (MAX_HUMIDITY + 1 - MIN_HUMIDITY) + MIN_HUMIDITY,
-                "wind_direction", rand() % (MAX_WIND_DIRECTION + 1 - MIN_WIND_DIRECTION) + MIN_WIND_DIRECTION,
-                "wind_intensity", rand() % (MAX_WIND_INTENSITY + 1 - MIN_WIND_INTENSITY) + MIN_WIND_INTENSITY,
-                "rain_height", rand() % (MAX_RAIN_HEIGHT + 1 - MIN_RAIN_HEIGHT) + MIN_RAIN_HEIGHT
+    snprintf(buffer, MSG_LEN, MSG_PROTO, device_name
+            //result[0], result[1], result[2], result[3]
             );
 
     if (emcute_pub(&t, buffer, strlen(buffer), flags) != EMCUTE_OK) {
@@ -329,14 +353,29 @@ static int cmd_telemetry(int argc, char ** argv){
     printf("Published %i bytes to topic '%s [%i] msg: %s'\n",
             (int)strlen(buffer), t.name, t.id, buffer);
 
+
+    UNUSED(col);
+    UNUSED(result);
     return 0;
 }
 void *thread_handler(void *arg)
 {
     UNUSED(arg);
-    while(1){
-        printf("Time: %llu\n", xtimer_now64().ticks64);
-        xtimer_sleep(5);
+    i2c_t dev = I2C_DEV(0);
+    i2c_acquire(dev);
+    uint8_t data[128];
+    int retval = i2c_read_regs(dev, 0x68, 0x80,data, 128, 0);
+    i2c_release(dev);
+    printf("Retval=%d\n", retval);
+    int col;
+    UNUSED(col);
+    for(int i = 0, col = 0; i<128;i+=2, col++){
+        uint tmp = (uint8_t) data[i]*0.25;
+        uint8_t raw = data[i];
+        printf("i=%d, raw = %u, tmp = %u\n", i, raw, tmp);
+        //
+        //printf("%d ", tmp);
+        if((col+1)%8==0) printf("\n");
     }
     return NULL;
 }
@@ -353,8 +392,22 @@ static int cmd_pub_data(int argc, char ** argv){
 }
 
 static int cmd_timestamp(int argc, char ** argv){
-    UNUSED(argc); UNUSED(argv);
-    printf ( "Current local time and date: %llu000\n",(unsigned long long int)time(NULL));
+    UNUSED(argc); UNUSED(argv); 
+    i2c_t dev = I2C_DEV(0);
+    i2c_acquire(dev);
+    uint8_t data[128];
+    int retval = i2c_read_regs(dev, 0x68, 0x80,data, 128, 0);
+    i2c_release(dev);
+    printf("Retval=%d\n", retval);
+    int col;
+    UNUSED(col);
+    for(int i = 0, col = 0; i<128;i+=2, col++){
+        uint8_t raw = data[i];
+        uint tmp = (uint8_t) raw*0.25;
+        //printf("i=%d, raw = %u, tmp = %u\n", i, raw, tmp);
+        printf("%d ", tmp);
+        if((col+1)%8==0) printf("\n");
+    }
     return 0;
 }
 static int cmd_set_dev(int argc, char ** argv){
