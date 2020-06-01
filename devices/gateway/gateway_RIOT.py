@@ -7,10 +7,10 @@ global MAXIMUM_BACKOFF_TIME
 
 # SETUP
 project_id = 'dynartwork-277815'
-registry_id = 'iot_devices'
+registry_id = 'sensors-register'
 cloud_region = 'europe-west1'
-device_id = 'virtual_1'
-sub_topic = 'events'
+device_id = 'esp32-1'
+sub_topic = 'sensors-topic'
 ca_cert_path = 'roots.pem'
 log_path = 'config_log.csv'
 algorithm = 'RS256'
@@ -347,8 +347,7 @@ if __name__ == "__main__":
 						device_id, rsa_private_path, algorithm,
 						ca_cert_path, mqtt_bridge_hostname, mqtt_bridge_port)
 
-  mqtt_topic = '/devices/{}/{}'.format(device_id, sub_topic)
-
+  mqtt_topic = '/devices/{}/events/{}'.format(device_id, sub_topic)
 
   try:
 		while True:

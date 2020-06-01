@@ -37,40 +37,29 @@
 #include "GridEYE.h"
  
 #include "jsmn.h"
+#include "phydat.h"
+
 
 #define I2C_INTERFACE I2C_DEV(0)
 
 #define SENSOR_ADDR (0x68)
 #define INTERVAL (5000000U)
 
-#define SENSORS 0
 #define UNUSED(x) (void)(x)
 
-#if SENSORS
-#include "lps331ap.h"
-#include "lps331ap_params.h"
-#endif
-
 #define EMCUTE_PORT         (1885U)
-#define EMCUTE_ID           ("gertrud")
+#define EMCUTE_ID           ("esp")
 #define EMCUTE_PRIO         (THREAD_PRIORITY_MAIN - 1)
 
 #define NUMOFSUBS           (16U)
 #define TOPIC_MAXLEN        (64U)
-#define TOPIC_STD           ("sensors-topic")
-#define MSG_LEN             (512) //CHECK
-#define MSG_PROTO           "{ 'name': '%s'}" //"{ 'name': '%s', 'values': ['%d', '%d', '%d', '%d', '%d'] }"
+#define TOPIC_STD           ("telemetry")
+#define MSG_LEN             (1024) //CHECK
+#define MSG_PROTO           "{ 'name': '%s', 'values': ['%d', '%d', '%d', '%d', '%d','%d', '%d', '%d' \
+'%d', '%d', '%d', '%d', '%d','%d', '%d', '%d'\
+'%d', '%d', '%d', '%d', '%d','%d', '%d', '%d'\
+] }"
 
-#define MIN_TEMPERATURE -50
-#define MAX_TEMPERATURE 50
-#define MIN_HUMIDITY 0
-#define MAX_HUMIDITY 100
-#define MIN_WIND_DIRECTION 0
-#define MAX_WIND_DIRECTION 360
-#define MIN_WIND_INTENSITY 0
-#define MAX_WIND_INTENSITY 100
-#define MIN_RAIN_HEIGHT 0
-#define MAX_RAIN_HEIGHT 50
 static char stack[THREAD_STACKSIZE_DEFAULT];
 static msg_t queue[8];
 
@@ -316,15 +305,21 @@ static int cmd_telemetry(int argc, char ** argv){
     UNUSED(argc);
     UNUSED(argv);
     emcute_topic_t t;
-    unsigned flags = EMCUTE_QOS_1;
+    unsigned flags = EMCUTE_QOS_0;
     t.name = TOPIC_STD;
     if (emcute_reg(&t) != EMCUTE_OK) {
         puts("error: unable to obtain topic ID");
         return 1;
     }
+
     i2c_t dev = I2C_DEV(0);
     i2c_acquire(dev);
     uint8_t data[128];
+    /*
+    phydat_t res;
+    res.unit = UNIT_TEMP_C;
+    res.scale = 0;
+    phydat_fit(&res, data, 128); */
     int retval = i2c_read_regs(dev, 0x68, 0x80,data, 128, 0);
     i2c_release(dev);
     printf("Retval=%d\n", retval);
@@ -340,8 +335,10 @@ static int cmd_telemetry(int argc, char ** argv){
     }
 
     char buffer[MSG_LEN];
-    snprintf(buffer, MSG_LEN, MSG_PROTO, device_name
-            //result[0], result[1], result[2], result[3]
+    snprintf(buffer, MSG_LEN, MSG_PROTO, device_name, 
+            result[0], result[1], result[2], result[3],result[4],result[5], result[6],result[7],
+            result[8], result[9], result[10], result[11],result[12],result[13], result[14],result[15],
+            result[16], result[17], result[18], result[19],result[20],result[21], result[22],result[23]
             );
 
     if (emcute_pub(&t, buffer, strlen(buffer), flags) != EMCUTE_OK) {

@@ -41,7 +41,6 @@ int16_t getRegister(unsigned char reg, int8_t len)
       retval = i2c_read_regs(dev, 0x68, reg, data,2, I2C_NOSTOP);
       uint8_t lsb = data[0]; 
       uint8_t msb = data[1];
-      EINVAL
       printf("retval %d\n", retval);  
       // concat bytes into int
       result = (uint16_t)msb << 8 | lsb;

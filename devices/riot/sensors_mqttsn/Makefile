@@ -31,6 +31,7 @@ USEMODULE += shell_commands
 USEMODULE += ps
 # For testing we also include the ping6 command and some stats
 USEMODULE += gnrc_icmpv6_echo
+USEMODULE += phydat
 
 USEMODULE += esp_wifi
 CFLAGS= -DESP_WIFI_SSID=\"WiFi_Colasante\" -DESP_WIFI_PASS=\"1q2w3e4r\"
