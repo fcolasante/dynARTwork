@@ -19,7 +19,7 @@ import base64
 from uuid import uuid4
 
 import pytest
-
+import json
 import main
 
 
@@ -53,10 +53,16 @@ def test_minimally_valid_message(client, capsys):
 
 
 def test_populated_message(client, capsys):
-    name = str(uuid4())
+    import json
+    data = {}
+    data['name'] = 'pippo'
+    data['data'] = [20,21,22,20,21,22,25]
+    
+    name = json.dumps(data)
     data = base64.b64encode(name.encode()).decode()
 
     r = client.post('/', json={'message': {'data': data}})
+    print(r.status_code)
     assert r.status_code == 204
 
     out, _ = capsys.readouterr()

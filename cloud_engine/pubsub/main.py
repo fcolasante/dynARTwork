@@ -16,9 +16,14 @@
 import base64
 import os
 import sys
-
+import tempfile
+import json
+from google.cloud import storage, vision
+from wand.image import Image
+storage_client = storage.Client()
 from flask import Flask, request
 
+import image
 
 app = Flask(__name__)
 # [END run_pubsub_server_setup]
@@ -42,12 +47,40 @@ def index():
 
     name = 'World'
     if isinstance(pubsub_message, dict) and 'data' in pubsub_message:
-        name = base64.b64decode(pubsub_message['data']).decode('utf-8').strip()
+        try:
+            data = json.loads(
+                base64.b64decode(pubsub_message['data']).decode())
+        except Exception as e:
+            msg = ('Invalid Pub/Sub message: '
+                   'data property is not valid base64 encoded JSON')
+            print(f'error: {e}')
+            return f'Bad Request: {msg}', 400
+    
+        # Validate the message is a Cloud Storage event.
+        if not data["name"] or not data["data"]:
+            msg = ('Invalid Cloud Storage nbucketotification: '
+                       'expected name and bucket properties')
+            print(f'error: {msg}')
+            return f'Bad Request: {msg}', 400
 
-    print(f'Hello {name}!')
+        file_name="test.jpg"
+        bucket_name = "dynartwork-277815.appspot.com"
 
-    # Flush the stdout to avoid log buffering.
-    sys.stdout.flush()
+        blob = storage_client.bucket(bucket_name).get_blob(file_name)
+        print(f'Hello {name}!')
+
+        try:
+            image.blur_offensive_images(data)
+            # Flush the stdout to avoid log buffering.
+            sys.stdout.flush()
+            return ('', 204)
+
+        except Exception as e:
+            print(f'error: {e}')
+            return ('', 500)
+
+        # Flush the stdout to avoid log buffering.
+        sys.stdout.flush()
 
     return ('', 204)
 # [END run_pubsub_handler]

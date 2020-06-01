@@ -25,6 +25,11 @@ COPY requirements.txt ./
 # Install production dependencies.
 RUN pip install -r requirements.txt
 
+RUN set -ex; \
+  apt-get -y update; \
+  apt-get -y install imagemagick; \
+  rm -rf /var/lib/apt/lists/*
+  
 # Copy local code to the container image.
 ENV APP_HOME /app
 WORKDIR $APP_HOME
