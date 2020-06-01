@@ -36,32 +36,32 @@ def index():
     if not envelope:
         msg = 'no Pub/Sub message received'
         print(f'error: {msg}')
-        return f'Bad Request: {msg}', 400
+        return f'Bad Request: {msg}', 410
 
     if not isinstance(envelope, dict) or 'message' not in envelope:
         msg = 'invalid Pub/Sub message format'
         print(f'error: {msg}')
-        return f'Bad Request: {msg}', 400
+        return f'Bad Request: {msg}', 411
 
     pubsub_message = envelope['message']
 
     name = 'World'
     if isinstance(pubsub_message, dict) and 'data' in pubsub_message:
+        print(base64.b64decode(pubsub_message['data']).decode('utf-8'))
         try:
             data = json.loads(
-                base64.b64decode(pubsub_message['data']).decode())
+                base64.b64decode(pubsub_message['data']).decode('utf-8'))
         except Exception as e:
             msg = ('Invalid Pub/Sub message: '
                    'data property is not valid base64 encoded JSON')
             print(f'error: {e}')
-            return f'Bad Request: {msg}', 400
+            return f'Bad Request: {msg}', 412
     
         # Validate the message is a Cloud Storage event.
         if not data["name"] or not data["data"]:
-            msg = ('Invalid Cloud Storage nbucketotification: '
-                       'expected name and bucket properties')
+            msg = (data)
             print(f'error: {msg}')
-            return f'Bad Request: {msg}', 400
+            return f'Bad Request: {msg}', 413
 
         file_name="test.jpg"
         bucket_name = "dynartwork-277815.appspot.com"

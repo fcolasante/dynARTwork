@@ -55,10 +55,9 @@
 #define TOPIC_MAXLEN        (64U)
 #define TOPIC_STD           ("telemetry")
 #define MSG_LEN             (1024) //CHECK
-#define MSG_PROTO           "{ 'name': '%s', 'values': ['%d', '%d', '%d', '%d', '%d','%d', '%d', '%d' \
-'%d', '%d', '%d', '%d', '%d','%d', '%d', '%d'\
-'%d', '%d', '%d', '%d', '%d','%d', '%d', '%d'\
-] }"
+#define MSG_PROTO           "{ \"name\": \"%s\", \"data\": [%d,%d,%d,%d,%d,%d,%d,%d,  \
+%d,%d,%d,%d,%d,%d,%d,%d,\
+%d,%d,%d,%d,%d,%d,%d,%d] }"
 
 static char stack[THREAD_STACKSIZE_DEFAULT];
 static msg_t queue[8];
