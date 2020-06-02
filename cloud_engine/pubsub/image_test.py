@@ -82,7 +82,7 @@ def test_process_safe_image(
 @patch('image.storage_client')
 def test_blur_image(storage_client, image_mock, os_mock, capsys):
     filename = str(uuid.uuid4())
-    blur_bucket = 'blurred-bucket-' + str(uuid.uuid4())
+    blur_bucket = "processed_artworks"
 
     os_mock.remove = MagicMock()
     os_mock.path = MagicMock()

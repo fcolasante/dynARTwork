@@ -31,32 +31,33 @@ def client():
 
 def test_empty_payload(client):
     r = client.post('/', json='')
-    assert r.status_code == 400
+    assert r.status_code == 410
 
 
 def test_invalid_payload(client):
     r = client.post('/', json={'nomessage': 'invalid'})
-    assert r.status_code == 400
+    assert r.status_code == 411
 
 
 def test_invalid_mimetype(client):
     r = client.post('/', json="{ message: true }")
-    assert r.status_code == 400
+    assert r.status_code == 411
 
 
 def test_minimally_valid_message(client, capsys):
     r = client.post('/', json={'message': True})
-    assert r.status_code == 204
+    assert r.status_code == 414
 
     out, _ = capsys.readouterr()
-    assert 'Hello World!' in out
+    assert '' in out
 
 
 def test_populated_message(client, capsys):
     import json
+    import numpy as np; np.random.seed(0)
     data = {}
-    data['name'] = 'pippo'
-    data['data'] = [20,21,22,20,21,22,25]
+    data['name'] = 'peppe.jpg'
+    data['data'] = np.random.binomial(n=30,p=0.7, size=(8,8)).tolist()
     
     name = json.dumps(data)
     data = base64.b64encode(name.encode()).decode()
@@ -66,4 +67,4 @@ def test_populated_message(client, capsys):
     assert r.status_code == 204
 
     out, _ = capsys.readouterr()
-    assert f'Hello {name}!' in out
+    assert f'{name}' in out

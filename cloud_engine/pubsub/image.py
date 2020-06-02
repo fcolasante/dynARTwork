@@ -20,6 +20,10 @@ import tempfile
 from google.cloud import storage, vision
 from wand.image import Image
 
+import numpy as np; np.random.seed(0)
+import matplotlib.pyplot as plt
+
+
 storage_client = storage.Client()
 vision_client = vision.ImageAnnotatorClient()
 # [END run_imageproc_handler_setup]
@@ -76,7 +80,7 @@ def __blur_image(current_blob):
     # Upload result to a second bucket, to avoid re-triggering the function.
     # You could instead re-upload it to the same bucket + tell your function
     # to ignore files marked as blurred (e.g. those with a "blurred" prefix)
-    blur_bucket_name = os.getenv('BLURRED_BUCKET_NAME')
+    blur_bucket_name = "processed_artworks"
     blur_bucket = storage_client.bucket(blur_bucket_name)
     new_blob = blur_bucket.blob(file_name)
     new_blob.upload_from_filename(temp_local_filename)
@@ -85,3 +89,20 @@ def __blur_image(current_blob):
     # Delete the temporary file.
     os.remove(temp_local_filename)
 # [END run_imageproc_handler_blur]
+def build_image(data):
+    _, temp_local_filename = tempfile.mkstemp()
+
+    fig, ax = plt.subplots()
+    im = ax.imshow(data['data'])
+    fig.tight_layout()
+    ax.get_figure().savefig(temp_local_filename)
+
+    file_name = f"data_{data['name']}.png"
+    blur_bucket_name = "processed_artworks"
+    blur_bucket = storage_client.bucket(blur_bucket_name)
+    new_blob = blur_bucket.blob(file_name)
+    new_blob.upload_from_filename(temp_local_filename)
+    print(f'Blurred image uploaded to: gs://{blur_bucket_name}/{file_name}')
+
+    # Delete the temporary file.
+    os.remove(temp_local_filename)

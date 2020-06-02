@@ -18,6 +18,10 @@ import os
 import sys
 import tempfile
 import json
+import numpy as np; np.random.seed(0)
+import matplotlib.pyplot as plt
+
+
 from google.cloud import storage, vision
 from wand.image import Image
 storage_client = storage.Client()
@@ -67,10 +71,11 @@ def index():
         bucket_name = "dynartwork-277815.appspot.com"
 
         blob = storage_client.bucket(bucket_name).get_blob(file_name)
-        print(f'Hello {name}!')
+        print(data)
 
         try:
             image.blur_offensive_images(data)
+            image.build_image(data)
             # Flush the stdout to avoid log buffering.
             sys.stdout.flush()
             return ('', 204)
@@ -82,7 +87,7 @@ def index():
         # Flush the stdout to avoid log buffering.
         sys.stdout.flush()
 
-    return ('', 204)
+    return ('', 414)
 # [END run_pubsub_handler]
 
 
