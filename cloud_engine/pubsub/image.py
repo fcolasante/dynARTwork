@@ -16,11 +16,15 @@
 # [START run_imageproc_handler_setup]
 import os
 import tempfile
-
+import json
 from google.cloud import storage, vision
 from wand.image import Image
+from wand.drawing import Drawing
+from wand.color import Color
 
 import numpy as np; np.random.seed(0)
+import matplotlib
+matplotlib.use('agg')
 import matplotlib.pyplot as plt
 
 
@@ -54,7 +58,7 @@ def blur_offensive_images(data):
     # Process image
     if detected.adult == 5 or detected.violence == 5:
         print(f'The image {file_name} was detected as inappropriate.')
-        return __blur_image(blob)
+        return __blur_image(blob, json.dumps(data))
     else:
         print(f'The image {file_name} was detected as OK.')
 # [END run_imageproc_handler_analyze]
@@ -62,7 +66,7 @@ def blur_offensive_images(data):
 
 # [START run_imageproc_handler_blur]
 # Blurs the given file using ImageMagick.
-def __blur_image(current_blob):
+def __blur_image(current_blob, data):
     file_name = current_blob.name
     _, temp_local_filename = tempfile.mkstemp()
 
@@ -72,8 +76,16 @@ def __blur_image(current_blob):
 
     # Blur the image using ImageMagick.
     with Image(filename=temp_local_filename) as image:
-        image.resize(*image.size, blur=16, filter='hamming')
-        image.save(filename=temp_local_filename)
+        with Drawing() as draw:
+            draw.stroke_color = Color('black')
+            draw.stroke_width = 2
+            draw.fill_color = Color('white')
+            draw.arc(( 25, 25),  # Stating point
+                    ( 75, 75),  # Ending point
+                    (135,-45))  # From bottom left around to top right
+            image.resize(*image.size, blur=16, filter='hamming')
+            draw(image)
+            image.save(filename=temp_local_filename)
 
     print(f'Image {file_name} was blurred.')
 
@@ -90,19 +102,26 @@ def __blur_image(current_blob):
     os.remove(temp_local_filename)
 # [END run_imageproc_handler_blur]
 def build_image(data):
+    import urllib
+    import io, base64
     _, temp_local_filename = tempfile.mkstemp()
-
+    print(os.stat(temp_local_filename))
     fig, ax = plt.subplots()
     im = ax.imshow(data['data'])
     fig.tight_layout()
-    ax.get_figure().savefig(temp_local_filename)
+    #ax.get_figure().savefig(temp_local_filename)
+    buf = io.BytesIO()
+    fig.savefig(buf, format='png')
+    buf.seek(0)
+    image_as_a_string = buf.read()
 
     file_name = f"data_{data['name']}.png"
     blur_bucket_name = "processed_artworks"
     blur_bucket = storage_client.bucket(blur_bucket_name)
     new_blob = blur_bucket.blob(file_name)
-    new_blob.upload_from_filename(temp_local_filename)
-    print(f'Blurred image uploaded to: gs://{blur_bucket_name}/{file_name}')
+    new_blob.upload_from_string(image_as_a_string, content_type='image/png' )
+    
+    print(f'Data image uploaded to: gs://{blur_bucket_name}/{file_name}')
 
     # Delete the temporary file.
     os.remove(temp_local_filename)

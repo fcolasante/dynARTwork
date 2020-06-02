@@ -27,7 +27,7 @@ RUN pip install -r requirements.txt
 
 RUN set -ex; \
   apt-get -y update; \
-  apt-get -y install imagemagick; \
+  apt-get -y install imagemagick libxft-dev libfreetype6 libfreetype6-dev; \
   rm -rf /var/lib/apt/lists/*
   
 # Copy local code to the container image.

@@ -18,8 +18,8 @@ import os
 import sys
 import tempfile
 import json
-import numpy as np; np.random.seed(0)
-import matplotlib.pyplot as plt
+#import numpy as np; np.random.seed(0)
+#import matplotlib.pyplot as plt
 
 
 from google.cloud import storage, vision

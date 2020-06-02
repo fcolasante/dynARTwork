@@ -55,9 +55,10 @@
 #define TOPIC_MAXLEN        (64U)
 #define TOPIC_STD           ("telemetry")
 #define MSG_LEN             (1024) //CHECK
-#define MSG_PROTO           "{ \"name\": \"%s\", \"data\": [%d,%d,%d,%d,%d,%d,%d,%d,  \
-%d,%d,%d,%d,%d,%d,%d,%d,\
-%d,%d,%d,%d,%d,%d,%d,%d] }"
+#define MSG_PROTO           "{ \"name\": \"%s\", \"data\": [[%d,%d,%d,%d],  \
+[%d,%d,%d,%d],\
+[%d,%d,%d,%d],\
+[%d,%d,%d,%d]] }"
 
 static char stack[THREAD_STACKSIZE_DEFAULT];
 static msg_t queue[8];
@@ -336,8 +337,7 @@ static int cmd_telemetry(int argc, char ** argv){
     char buffer[MSG_LEN];
     snprintf(buffer, MSG_LEN, MSG_PROTO, device_name, 
             result[0], result[1], result[2], result[3],result[4],result[5], result[6],result[7],
-            result[8], result[9], result[10], result[11],result[12],result[13], result[14],result[15],
-            result[16], result[17], result[18], result[19],result[20],result[21], result[22],result[23]
+            result[8], result[9], result[10], result[11],result[12],result[13], result[14],result[15]
             );
 
     if (emcute_pub(&t, buffer, strlen(buffer), flags) != EMCUTE_OK) {

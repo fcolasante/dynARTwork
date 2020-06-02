@@ -42,5 +42,6 @@ gcloud builds submit --tag gcr.io/${}/pubsub-tutorial
 gcloud beta run deploy pubsub-tutorial --image gcr.io/${GOOGLE_CLOUD_PROJECT}/pubsub-tutorial
 ```
 ```
-export GOOGLE_APPLICATION_CREDENTIALS="/home/frank/university/dynARTwork/devices/credential/DynArtWork-5537e0885c4e.json" 
+export GOOGLE_APPLICATION_CREDENTIALS="/home/frank/university/dynARTwork/devices/credential/DynArtWork-5537e0885c4e.json"
+export GOOGLE_CLOUD_PROJECT=dynartwork-277815
 ```
