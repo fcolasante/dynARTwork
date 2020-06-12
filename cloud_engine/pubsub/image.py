@@ -76,16 +76,8 @@ def __blur_image(current_blob, data):
 
     # Blur the image using ImageMagick.
     with Image(filename=temp_local_filename) as image:
-        with Drawing() as draw:
-            draw.stroke_color = Color('black')
-            draw.stroke_width = 2
-            draw.fill_color = Color('white')
-            draw.arc(( 25, 25),  # Stating point
-                    ( 75, 75),  # Ending point
-                    (135,-45))  # From bottom left around to top right
-            image.resize(*image.size, blur=16, filter='hamming')
-            draw(image)
-            image.save(filename=temp_local_filename)
+        image.resize(*image.size, blur=16, filter='hamming')
+        image.save(filename=temp_local_filename)
 
     print(f'Image {file_name} was blurred.')
 
@@ -114,7 +106,7 @@ def build_image(data):
     fig.savefig(buf, format='png')
     buf.seek(0)
     image_as_a_string = buf.read()
-
+    image = data['name']
     file_name = f"data_{data['name']}.png"
     blur_bucket_name = "processed_artworks"
     blur_bucket = storage_client.bucket(blur_bucket_name)
@@ -122,6 +114,38 @@ def build_image(data):
     new_blob.upload_from_string(image_as_a_string, content_type='image/png' )
     
     print(f'Data image uploaded to: gs://{blur_bucket_name}/{file_name}')
-
+    print("OK")
     # Delete the temporary file.
     os.remove(temp_local_filename)
+    final_image(image, file_name)
+
+def final_image(current_file, data_file):
+    print("Started")
+    temp_local_filename1 = tempfile.mkstemp()
+    current_file.download_to_filename(temp_local_filename1)
+    temp_local_filename2 = tempfile.mkstemp()
+    data_file.download_to_filename(temp_local_filename2)
+    temp_local_filename3 = tempfile.mkstemp()
+    print(f'Image {current_file} was downloaded to {temp_local_filename1}.')
+    print(f'Image {data_file} was downloaded to {temp_local_filename2}.')
+    with Image(filename=temp_local_filename1) as left:
+        print('width_1 =', left.width)
+        print('height_1 =', left.height)
+        with Image(filename=temp_local_filename2) as img2:
+            print('width_2 =', img2.width)
+            print('height_2 =', img2.height)
+            if left.width != img2.width or left.height != img2.height:
+                img2.resize(left.width, left.height)
+                img2.save(filename=temp_local_filename3) 
+                with Image(filename=temp_local_filename3) as affinity:
+                    left.remap(affinity)
+            else:
+                left.remap(img2)
+            left.save(filename=temp_local_filename1)
+    blur_bucket_name = "processed_artworks"
+    blur_bucket = storage_client.bucket(blur_bucket_name)
+    new_blob = blur_bucket.blob(f"{current_file}_showed.jpg")
+    new_blob.upload_from_filename(temp_local_filename1)
+
+
+
