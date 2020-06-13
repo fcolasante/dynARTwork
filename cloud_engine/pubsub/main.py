@@ -74,7 +74,7 @@ def index():
         print(data)
 
         try:
-            image.blur_offensive_images(data)
+            #image.blur_offensive_images(data)
             image.build_image(data)
             # Flush the stdout to avoid log buffering.
             sys.stdout.flush()
