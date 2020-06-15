@@ -52,6 +52,7 @@ import argparse
 import json
 import time
 import cv2
+from wand.image import Image
 from google.cloud import storage
 from google.cloud import pubsub_v1
 
@@ -72,11 +73,10 @@ def poll_notifications(project, subscription_name):
         event_type = attributes["eventType"]
         bucket_id = attributes["bucketId"]
         object_id = attributes["objectId"]
-        #generation = attributes["objectGeneration"]
+        print(object_id)
+        message.ack()
         var = "Message not important"
         if "data" in object_id:
-            message.ack()
-        else:
             storage_client = storage.Client.from_service_account_json('service_account.json')
             # get bucket with name
             bucket = storage_client.get_bucket('processed_artworks')
@@ -89,16 +89,31 @@ def poll_notifications(project, subscription_name):
             # write on file and close
             n = text_file.write(json_data)
             text_file.close()
+            # image to process
+            image_to_get = object_id[:-4].split("_")[-1]
+            with Image(filename=image_to_get) as left:
+                print('width_1 =', left.width)
+                print('height_1 =', left.height)
+                # data image
+                with Image(filename=object_id) as img2:
+                    print('width_2 =', img2.width)
+                    print('height_2 =', img2.height)
+                    if left.width != img2.width or left.height != img2.height:
+                        img2.resize(left.width, left.height)
+                        img2.save(filename="resized.png") 
+                        with Image(filename="resized.png") as affinity:
+                            left.remap(affinity)
+                    else:
+                        left.remap(img2)
+                    left.save(filename="image_displayed.jpg")
             # display the image
-            print("Showing image:{}".format(object_id))
-            img2 = cv2.imread('./{}'.format(object_id))
-            message.ack()
+            print("Showing image:{}".format(image_to_get))
+            img2 = cv2.imread('./image_displayed.jpg')
             cv2.imshow("image", img2)
             var = "Image correctly showed"
         print("Result of callback:{}".format(var))
         
 
-    #subscriber.subscribe(subscription_path, callback=callback)
     subscriber.subscribe(subscription_path, callback=callback)
     # The subscriber is non-blocking, so we must keep the main thread from
     # exiting to allow it to process messages in the background.
@@ -108,10 +123,9 @@ def poll_notifications(project, subscription_name):
     # for the full screen mode
     #cv2.setWindowProperty("image", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
     while True:
-        cv2.waitKey(0) 
+        cv2.waitKey(0)
+        
         #time.sleep(60)
-
-
     # [END poll_notifications]
 
 
