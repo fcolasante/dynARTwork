@@ -111,6 +111,7 @@ def build_image(data):
     fig.tight_layout()
     #ax.get_figure().savefig(temp_local_filename)
     buf = io.BytesIO()
+    plt.axis('off')
     fig.savefig(buf, format='png')
     buf.seek(0)
     image_as_a_string = buf.read()
