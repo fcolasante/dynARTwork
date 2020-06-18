@@ -48,8 +48,8 @@ def index():
         return f'Bad Request: {msg}', 411
 
     pubsub_message = envelope['message']
-
     name = 'World'
+    print("STARTING TO PROCESS DATA")
     if isinstance(pubsub_message, dict) and 'data' in pubsub_message:
         print(base64.b64decode(pubsub_message['data']).decode('utf-8'))
         try:
@@ -74,7 +74,7 @@ def index():
         print(data)
 
         try:
-            image.blur_offensive_images(data)
+            #image.blur_offensive_images(data)
             image.build_image(data)
             # Flush the stdout to avoid log buffering.
             sys.stdout.flush()
