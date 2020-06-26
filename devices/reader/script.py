@@ -12,3 +12,12 @@ json_data = blob.download_as_string()
 text_file = open("sample.jpg", "wb")
 n = text_file.write(json_data)
 text_file.close()
+import subprocess
+
+#Display the image
+image = subprocess.Popen(["feh", "--hide-pointer", "-x", "-q", "-B", "black", "-g", "1280x800", "/home/pi/Documents/sample.jpg"])
+
+# Do other stuff here...
+
+# You can now close the image by doing
+#image.kill()
