@@ -1,0 +1,106 @@
+
+
+
+
+
+
+
+                                  
+
+
+##############################################################################################USEFUL COMMANDS###############################################################################################
+python myscript.py \
+    --project_id=dynartwork-277815 \
+    --registry_id=sensors-register \
+    --device_id=esp32-1 \
+    --private_key_file=rsa_private.pem \
+    --algorithm=RS256
+    --cloud_region=europe-west1
+
+
+
+python notification_polling.py dynartwork-277815 processed-sub
+########################################################################################################################################################################################################
+
+
+
+
+
+
+
+##################################################################################### OTHER STUFFS######################################################################################################
+gcloud pubsub subscriptions create \
+    projects/dynartwork-277815/subscriptions/sensors-sub \
+    --topic=projects/dynartwork-277815/topics/sensors-topic
+
+ node cloudiot_mqtt_example_nodejs.js \
+    mqttDeviceDemo \
+    --projectId=dynartwork-277815 \
+    --cloudRegion=europe-west1 \
+    --registryId=sensors-register \
+    --deviceId=esp32-1 \
+    --privateKeyFile=rsa_private.pem \
+    --numMessages=25 \
+    --algorithm=RS256
+
+gcloud pubsub subscriptions pull --auto-ack \
+    projects/dynartwork-277815/subscriptions/sensors-sub
+
+python cloudiot_pubsub_example_server.py \
+    --project_id=dynartwork-277815 \
+    --pubsub_subscription=sensors-sub \
+    --service_account_json=service_account.json
+
+
+
+
+
+
+
+gcloud builds submit --tag gcr.io/dynartwork-277815/pubsub
+
+gcloud run deploy pubsub-tutorial --image gcr.io/dynartwork-277815/pubsub
+
+gcloud projects add-iam-policy-binding dynartwork-277815 \
+     --member=serviceAccount:service-1026699295478@gcp-sa-pubsub.iam.gserviceaccount.com \
+     --role=roles/iam.serviceAccountTokenCreator
+
+gcloud iam service-accounts sensors-invoker \
+     --display-name "Sensors Invoker"
+
+gcloud run services add-iam-policy-binding sensors-service \
+   --member=serviceAccount:sensors-invoker@dynartwork-277815.iam.gserviceaccount.com \
+   --role=roles/run.invoker
+
+
+gcloud pubsub subscriptions create sens-sub --topic sensors-topic \
+   --push-endpoint=https://sensors-service-ejdw7fcwpq-ew.a.run.app/ \
+   --push-auth-service-account=sensors-invoker@dynartwork-277815.iam.gserviceaccount.com
+
+
+gcloud run deploy sensors-service --image gcr.io/dynartwork-277815/pubsub --set-env-vars=BLURRED_BUCKET_NAME=processed_artworks
+gcloud pubsub topics publish sensors-topic --message "Runner"
+
+
+
+##################### COMANDO PER LO SCRIPT CHE PUSHA ##############################################
+
+
+python myscript.py     --project_id=dynartwork-277815     --registry_id=sensors-register     --device_id=esp32-1     --private_key_file=rsa_private.pem     --algorithm=RS256 --cloud_region=europe-west1
+
+
+#######################################
+
+
+https://pubsub-tutorial-ejdw7fcwpq-ew.a.run.app
+
+
+PORT=8080 && docker run \
+-p 9090:${PORT} \
+-e PORT=${PORT} \
+-e K_SERVICE=dev \
+-e K_CONFIGURATION=dev \
+-e K_REVISION=dev-00001 \
+-e GOOGLE_APPLICATION_CREDENTIALS=/tmp/keys/service_account.json \
+-v $GOOGLE_APPLICATION_CREDENTIALS:/tmp/keys/service_account.json:ro \
+gcr.io/dynartwork-277815/pubsub
