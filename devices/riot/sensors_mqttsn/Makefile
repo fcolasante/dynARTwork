@@ -34,7 +34,7 @@ USEMODULE += gnrc_icmpv6_echo
 USEMODULE += phydat
 
 USEMODULE += esp_wifi
-CFLAGS= -DESP_WIFI_SSID=\"WiFi_Colasante\" -DESP_WIFI_PASS=\"1q2w3e4r\"
+CFLAGS= -DESP_WIFI_SSID=\"EmStation\" -DESP_WIFI_PASS=\"EmStationESP32\"
 
 #TODO: test if it really works
 ifneq ($(BOARD), native)
