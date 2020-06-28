@@ -16,6 +16,7 @@ import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 
 
 
+
 import { environment } from '../environments/environment';
 import { AppMaterialModule } from './app-material.module';
 import { AboutComponent } from './components/about/about.component';
@@ -63,6 +64,11 @@ import { LoginComponent } from './components/login/login.component';
      guardProtectedRoutesUntilEmailIsVerified: true,
      enableEmailVerification: true, // default: true
    }),
+  //  NgxAuthFirebaseUIModule.forRoot(firebasekey, "DynArtWork",
+  //   {
+  //     authGuardFallbackURL: 'examples/logged-out',
+  //     authGuardLoggedInURL: 'examples/logged-in',
+  //   }),
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,

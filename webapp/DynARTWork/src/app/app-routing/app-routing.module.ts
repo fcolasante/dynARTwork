@@ -4,13 +4,22 @@ import { HomeComponent } from '../home/home.component';
 import { ContactComponent } from '../components/contact/contact.component';
 import { AboutComponent } from '../components/about/about.component';
 import { LoginComponent } from '../components/login/login.component';
+import { UploadImageComponent } from '../upload-image/upload-image.component';
+import {LoggedInGuard} from 'ngx-auth-firebaseui';
 
 const appRoutes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'about', component: AboutComponent},
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'newDynArtWork', component: UploadImageComponent},
+  {
+    path: 'secured',
+    loadChildren: 'app/secured/secured.module#SecuredModule',
+    canActivate: [LoggedInGuard]
+  }
 ]
+
 
 @NgModule({
   imports: [
