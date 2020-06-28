@@ -9,8 +9,7 @@ const appRoutes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'about', component: AboutComponent},
-  {path: 'login', component: LoginComponent},
-  {path: '**', redirectTo: 'home' }
+  {path: 'login', component: LoginComponent}
 ]
 
 @NgModule({
