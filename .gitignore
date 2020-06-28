@@ -5,3 +5,4 @@ devices/credential
 **/bin
 devices/reader/*.json
 devices/bridge/mysecrets.py
+**/service_account.json
