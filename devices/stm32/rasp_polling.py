@@ -43,6 +43,7 @@ def poll_notifications(project, subscription_name):
             text_file.close()
             # image to process
             image_to_get = object_id[:-4].split("_")[-1]
+            print(image_to_get)
             with Image(filename=image_to_get) as left:
                 print('width_1 =', left.width)
                 print('height_1 =', left.height)
@@ -86,10 +87,12 @@ if __name__ == "__main__":
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument(
-        "project", help="The ID of the project that owns the subscription"
+        "project", help="The ID of the project that owns the subscription",
+        default="dynartwork-277815"
     )
     parser.add_argument(
-        "subscription", help="The ID of the Pub/Sub subscription"
+        "subscription", help="The ID of the Pub/Sub subscription",
+        default="processed-sub"
     )
     args = parser.parse_args()
     poll_notifications(args.project, args.subscription)
