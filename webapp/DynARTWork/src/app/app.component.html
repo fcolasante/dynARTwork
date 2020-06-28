@@ -1,6 +1,7 @@
-<mat-toolbar>
-  <span>Dynamic Art WORK</span>
-</mat-toolbar>
 
-Upload your artwork:
-<app-upload-image placeholder="Cambia immagine" [nomeImage]="'immagine'" (urlCreated)="setImageUrl($event)"></app-upload-image>
+<div class="bg"> 
+    <app-toolbar></app-toolbar>
+    <router-outlet></router-outlet>
+</div>
+  <!-- Upload your artwork:
+    <app-upload-image placeholder="Cambia immagine" [nomeImage]="'immagine'" (urlCreated)="setImageUrl($event)"></app-upload-image> -->
