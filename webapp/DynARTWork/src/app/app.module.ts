@@ -24,6 +24,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { HomeComponent } from './home/home.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { LoginComponent } from './components/login/login.component';
+import { TeamComponent } from './components/team/team.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { LoginComponent } from './components/login/login.component';
     ToolbarComponent,
     ContactComponent,
     AboutComponent,
-    LoginComponent
+    LoginComponent,
+    TeamComponent
  ],
   imports: [
     BrowserModule,
