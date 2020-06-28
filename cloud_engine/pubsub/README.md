@@ -32,16 +32,14 @@ _Note: you may need to install `pytest` using `pip install pytest`._
 ## Deploy
 
 ```
-# Set an environment variable with your GCP Project ID
-export GOOGLE_CLOUD_PROJECT=<PROJECT_ID>
-
-# Submit a build using Google Cloud Build
-gcloud builds submit --tag gcr.io/${}/pubsub-tutorial
-
-# Deploy to Cloud Run
-gcloud beta run deploy pubsub-tutorial --image gcr.io/${GOOGLE_CLOUD_PROJECT}/pubsub-tutorial
-```
-```
 export GOOGLE_APPLICATION_CREDENTIALS="/home/frank/university/dynARTwork/devices/credential/DynArtWork-5537e0885c4e.json"
 export GOOGLE_CLOUD_PROJECT=dynartwork-277815
+```
+
+# Submit a build using Google Cloud Build
+```
+gcloud builds submit --tag gcr.io/${GOOGLE_CLOUD_PROJECT}/pubsub-tutorial
+
+# Deploy to Cloud Run
+gcloud beta run deploy sensors-service --image gcr.io/${GOOGLE_CLOUD_PROJECT}/pubsub-tutorial
 ```

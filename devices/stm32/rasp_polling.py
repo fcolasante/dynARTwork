@@ -7,14 +7,33 @@ from wand.image import Image
 from google.cloud import storage
 from google.cloud import pubsub_v1
 import subprocess
-
+from google.auth import jwt
 def poll_notifications(project, subscription_name):
     """Polls a Cloud Pub/Sub subscription for new GCS events for display."""
     # [BEGIN poll_notifications]
-    subscriber = pubsub_v1.SubscriberClient()
+
+    service_account_info = json.load(open("service_account.json"))
+    audience = "https://pubsub.googleapis.com/google.pubsub.v1.Subscriber"
+
+    credentials = jwt.Credentials.from_service_account_info(
+        service_account_info, audience=audience
+    )
+    subscriber = pubsub_v1.SubscriberClient(credentials=credentials)
+
     subscription_path = subscriber.subscription_path(
         project, subscription_name
     )
+
+    def download_image(name, bucketName="dynartwork-277815.appspot.com"):
+        storage_client = storage.Client.from_service_account_json('service_account.json')
+        bucket = storage_client.get_bucket(bucketName)
+        # get bucket data as blob
+        print(f'Opening {bucketName}/{name}')
+        blob = bucket.get_blob(name)
+        json_data = blob.download_as_string()
+        text_file = open(name, "wb")
+        n = text_file.write(json_data)
+        text_file.close()
 
     def callback(message):
         #show_image(message.attributes['objectId'])
@@ -29,40 +48,13 @@ def poll_notifications(project, subscription_name):
         message.ack()
         var = "Message not important"
         if "data" in object_id:
-            storage_client = storage.Client.from_service_account_json('service_account.json')
-            # get bucket with name
-            bucket = storage_client.get_bucket('processed_artworks')
-            # get bucket data as blob
-            blob = bucket.get_blob(object_id)
-            # convert to stringfil
-            json_data = blob.download_as_string()
-            # open file in writing
-            text_file = open(object_id, "wb")
-            # write on file and close
-            n = text_file.write(json_data)
-            text_file.close()
-            # image to process
-            image_to_get = object_id[:-4].split("_")[-1]
-            print(image_to_get)
-            with Image(filename=image_to_get) as left:
-                print('width_1 =', left.width)
-                print('height_1 =', left.height)
-                # data image
-                with Image(filename=object_id) as img2:
-                    print('width_2 =', img2.width)
-                    print('height_2 =', img2.height)
-                    if left.width != img2.width or left.height != img2.height:
-                        img2.resize(left.width, left.height)
-                        img2.save(filename="resized.png") 
-                        with Image(filename="resized.png") as affinity:
-                            left.remap(affinity)
-                    else:
-                        left.remap(img2)
-                    left.save(filename="image_displayed.jpg")
+            originalName= object_id[5:-4]
+            imageName = f'{originalName}_showed.jpg'
+            download_image(imageName, 'processed_artworks')
             # display the image
-            print("Showing image:{}".format(image_to_get))
-            #img2 = cv2.imread('./image_displayed.jpg')
-            #cv2.imshow("image", img2)
+            print("Showing image:{}".format(imageName))
+            image = subprocess.Popen(["feh", "--hide-pointer", "-x", "-q", "-B", "black", f"/home/pi/Documents/{imageName}"])
+
             var = "Image correctly showed"
         print("Result of callback:{}".format(var))
         
@@ -82,17 +74,4 @@ def poll_notifications(project, subscription_name):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        description=__doc__,
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-    )
-    parser.add_argument(
-        "project", help="The ID of the project that owns the subscription",
-        default="dynartwork-277815"
-    )
-    parser.add_argument(
-        "subscription", help="The ID of the Pub/Sub subscription",
-        default="processed-sub"
-    )
-    args = parser.parse_args()
-    poll_notifications(args.project, args.subscription)
+    poll_notifications("dynartwork-277815", "processed-sub")
