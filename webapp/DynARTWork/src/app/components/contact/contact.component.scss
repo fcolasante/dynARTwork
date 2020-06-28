@@ -1,0 +1,63 @@
+.bg {
+    /* The image used */
+    background-image: url(./../../../assets/sfondoN.jpg);
+    /* Full height */
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  md-card {
+    width: 50%;
+  }
+  
+  .text-center > * {
+    text-align: center;
+  }
+  
+  .phone {
+    font-size: 40px;
+  }
+  
+  md-icon {
+    color: #777;
+  }
+  
+  .email-tab > input {
+    width: 100%;
+  }
+  
+  md-select, md-input-container {
+    width: 100%;
+    margin: 10px 0;
+  }
+  
+  textarea {
+    min-height: 100px;
+  }
+  
+  .submit-area {
+    padding: 15px;
+  }
+  
+  .submit-button-area {
+    margin: 10px 0;
+  }
+  
+  @media (max-width: 698px) {
+    md-card {
+      width: 100%;
+    }
+  }
