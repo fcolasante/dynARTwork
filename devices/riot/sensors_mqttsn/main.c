@@ -319,47 +319,44 @@ static int cmd_telemetry(int argc, char ** argv){
     i2c_t dev = I2C_DEV(0);
     i2c_acquire(dev);
     uint8_t data[128];
-    /*
-    phydat_t res;
-    res.unit = UNIT_TEMP_C;
-    res.scale = 0;
-    phydat_fit(&res, data, 128); */
-    int retval = i2c_read_regs(dev, 0x68, 0x80,data, 128, 0);
-    i2c_release(dev);
-    printf("Retval=%d\n", retval);
     int col;
     int result[64];
-    for(int i = 0, col = 0; i<128;i+=2, col++){
-        uint8_t raw = data[i];
-        uint tmp = (uint8_t) raw*0.25;
-        result[col] = tmp;
-        //printf("i=%d, raw = %u, tmp = %u\n", i, raw, tmp);
-        printf("%d ", tmp);
-        if((col+1)%8==0) printf("\n");
+    while(1){
+        int retval = i2c_read_regs(dev, 0x68, 0x80,data, 128, 0);
+        i2c_release(dev);
+        printf("Retval=%d\n", retval);
+
+        for(int i = 0, col = 0; i<128;i+=2, col++){
+            uint8_t raw = data[i];
+            uint tmp = (uint8_t) raw*0.25;
+            result[col] = tmp;
+            //printf("i=%d, raw = %u, tmp = %u\n", i, raw, tmp);
+            printf("%d ", tmp);
+            if((col+1)%8==0) printf("\n");
+        }
+
+        char buffer[MSG_LEN];
+        snprintf(buffer, MSG_LEN, MSG_PROTO, device_name, 
+                result[0], result[1], result[2], result[3],result[4],result[5], result[6],result[7],
+                result[8], result[9], result[10], result[11],result[12],result[13], result[14],result[15],
+                result[16], result[17], result[18], result[19],result[20],result[21], result[22],result[23],
+                result[24], result[25], result[26],result[27],result[28], result[29],result[30],result[31],
+                result[32], result[33], result[34], result[35],result[36],result[37], result[38],result[39],
+                result[40], result[41], result[42], result[43],result[44],result[45], result[46],result[47],
+                result[48], result[49], result[50], result[51],result[52],result[53], result[54],result[55],
+                result[56], result[57], result[58], result[59],result[60],result[61], result[62],result[63]
+                );
+
+        if (emcute_pub(&t, buffer, strlen(buffer), flags) != EMCUTE_OK) {
+            printf("error: unable to publish data to topic '%s [%i]'\n",
+                    t.name, (int)t.id);
+            return 1;
+        }
+
+        printf("Published %i bytes to topic '%s [%i] msg: %s'\n",
+                (int)strlen(buffer), t.name, t.id, buffer);
+        xtimer_sleep(5);
     }
-
-    char buffer[MSG_LEN];
-    snprintf(buffer, MSG_LEN, MSG_PROTO, device_name, 
-            result[0], result[1], result[2], result[3],result[4],result[5], result[6],result[7],
-            result[8], result[9], result[10], result[11],result[12],result[13], result[14],result[15],
-            result[16], result[17], result[18], result[19],result[20],result[21], result[22],result[23],
-            result[24], result[25], result[26],result[27],result[28], result[29],result[30],result[31],
-            result[32], result[33], result[34], result[35],result[36],result[37], result[38],result[39],
-            result[40], result[41], result[42], result[43],result[44],result[45], result[46],result[47],
-            result[48], result[49], result[50], result[51],result[52],result[53], result[54],result[55],
-            result[56], result[57], result[58], result[59],result[60],result[61], result[62],result[63]
-            );
-
-    if (emcute_pub(&t, buffer, strlen(buffer), flags) != EMCUTE_OK) {
-        printf("error: unable to publish data to topic '%s [%i]'\n",
-                t.name, (int)t.id);
-        return 1;
-    }
-
-    printf("Published %i bytes to topic '%s [%i] msg: %s'\n",
-            (int)strlen(buffer), t.name, t.id, buffer);
-
-
     UNUSED(col);
     UNUSED(result);
     return 0;
@@ -397,25 +394,6 @@ static int cmd_pub_data(int argc, char ** argv){
     return 0;
 }
 
-static int cmd_timestamp(int argc, char ** argv){
-    UNUSED(argc); UNUSED(argv); 
-    i2c_t dev = I2C_DEV(0);
-    i2c_acquire(dev);
-    uint8_t data[128];
-    int retval = i2c_read_regs(dev, 0x68, 0x80,data, 128, 0);
-    i2c_release(dev);
-    printf("Retval=%d\n", retval);
-    int col;
-    UNUSED(col);
-    for(int i = 0, col = 0; i<128;i+=2, col++){
-        uint8_t raw = data[i];
-        uint tmp = (uint8_t) raw*0.25;
-        //printf("i=%d, raw = %u, tmp = %u\n", i, raw, tmp);
-        printf("%d ", tmp);
-        if((col+1)%8==0) printf("\n");
-    }
-    return 0;
-}
 static int cmd_set_dev(int argc, char ** argv){
     if (argc < 2) {
         printf("usage: %s <device_name>\n",
@@ -435,18 +413,14 @@ static const shell_command_t shell_commands[] = {
     { "unsub", "unsubscribe from topic", cmd_unsub },
     { "will", "register a last will", cmd_will },
     { "multi_thread", "print time continously on a new thread", cmd_pub_data},
-    #if SENSORS
-    { "sensors", "retrieve data sensors", cmd_sensors},
-    #endif
     { "pub_telemetry", "publish default msg on default topic", cmd_telemetry},
-    { "timestamp", "get current timestamp", cmd_timestamp},
     { "set_device", "set device name", cmd_set_dev},
     { NULL, NULL, NULL }
 };
 
 int main(void)
 {
-    puts("MQTT-SN example application\n");
+    puts("DynARTWork data application\n");
     puts("Type 'help' to get started. Have a look at the README.md for more"
          "information.");
 

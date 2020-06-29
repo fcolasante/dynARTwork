@@ -8,6 +8,10 @@ from google.cloud import storage
 from google.cloud import pubsub_v1
 import subprocess
 from google.auth import jwt
+import time
+
+image = None
+
 def poll_notifications(project, subscription_name):
     """Polls a Cloud Pub/Sub subscription for new GCS events for display."""
     # [BEGIN poll_notifications]
@@ -53,8 +57,11 @@ def poll_notifications(project, subscription_name):
             download_image(imageName, 'processed_artworks')
             # display the image
             print("Showing image:{}".format(imageName))
+            global image
+            previousImage = image
             image = subprocess.Popen(["feh", "--hide-pointer", "-x", "-q", "-B", "black", f"/home/pi/Documents/{imageName}"])
-
+            time.sleep(2)
+            previousImage.kill()
             var = "Image correctly showed"
         print("Result of callback:{}".format(var))
         
@@ -63,12 +70,9 @@ def poll_notifications(project, subscription_name):
     # The subscriber is non-blocking, so we must keep the main thread from
     # exiting to allow it to process messages in the background.
     print("Listening for messages on {}".format(subscription_path))
-    #img = cv2.imread('./{}'.format("cristo.jpg"))
-    #cv2.namedWindow("image", cv2.WINDOW_NORMAL)
-    # for the full screen mode
-    #cv2.setWindowProperty("image", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+    global image
+    image = subprocess.Popen(["feh", "--hide-pointer", "-x", "-F", f"/home/pi/Documents/dynartwork.png"])
     while True:
-        #cv2.waitKey(0)
         time.sleep(60)
     # [END poll_notifications]
 
