@@ -1,7 +1,7 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
-// import { MdDialog } from '@angular/material';
+ import { MatDialog } from '@angular/material/dialog';
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -24,13 +24,15 @@ export class ContactComponent implements OnInit {
     { value: 'general-question', viewValue: 'General Question' },
     { value: 'complaint', viewValue: 'Complaint' }
   ];
-
+  //material.io
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
 
   matcher = new MyErrorStateMatcher();
+
+  
   ngOnInit(): void {
   }
   onContactFormSubmit(formData) {
@@ -46,11 +48,11 @@ export class ContactComponent implements OnInit {
     }, 1500);
   }
 
-  onContactFormClear() {
-    // let dialogRef = this.dialog.open(ConfirmClearDialogComponent);
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result && result.shouldClear) {
-    //     this.contactForm.reset();
-    //   }
-    };
+  // onContactFormClear() {
+  //   let dialogRef = this.dialog.open(ConfirmClearDialogComponent);
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     if (result && result.shouldClear) {
+  //       this.contactForm.reset();
+  //     }
+  //   };
 }

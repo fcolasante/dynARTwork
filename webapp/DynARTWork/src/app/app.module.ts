@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UploadImageComponent } from './upload-image/upload-image.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxYoutubePlayerModule  } from "ngx-youtube-player";
+
 
 
 import { AngularFireModule } from '@angular/fire';
@@ -27,6 +29,7 @@ import { LoginComponent } from './components/login/login.component';
 import { TeamComponent } from './components/team/team.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +44,7 @@ import { TeamComponent } from './components/team/team.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgxYoutubePlayerModule.forRoot(),
     NgxAuthFirebaseUIModule.forRoot({
       apiKey: "AIzaSyDzj9WdlpAO2gSI2zKMAk6dmB6c17TusQQ",
       authDomain: "dynartwork-277815.firebaseapp.com",

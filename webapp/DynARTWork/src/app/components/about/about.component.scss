@@ -2,7 +2,7 @@
     /* The image used */
     background-image: url(./../../../assets/sfondoN.jpg);
     /* Full height */
-    height: 100%;
+
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
@@ -13,7 +13,14 @@
     text-align: center;
   }
   .example-card {
-    max-width: 500px;
+    max-width: 800px;
     margin: 0 auto;
   }
-  
+  .video{
+    align-content: center;
+    margin: 0 auto;
+    display: inline-block;
+  }
+  .example-spacer {
+    flex:  1 1 auto;
+  }
