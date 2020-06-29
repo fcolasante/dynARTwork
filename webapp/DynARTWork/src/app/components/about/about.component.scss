@@ -9,3 +9,11 @@
     background-attachment: fixed;
     background-size: cover;
   }
+  .text-center > * {
+    text-align: center;
+  }
+  .example-card {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  

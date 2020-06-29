@@ -1,0 +1,18 @@
+.bg {
+    /* The image used */
+    background-image: url(./../../../assets/sfondoN.jpg);
+    /* Full height */
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    // background-size: cover;
+  }
+  .text-center > * {
+    text-align: center;
+  }
+  .example-card {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
