@@ -1,5 +1,5 @@
 <mat-toolbar *ngIf="user">
-    <span>dynARTwork</span>
+    <a mat-button color="primary" routerLink="/home" class="home">dynARTwork</a>
     <span class="example-spacer"></span>
     <a mat-button color="primary" routerLink="/newDynArtWork">New dynARTwork</a>
     <a mat-button color="primary" routerLink="/team">Team</a>
@@ -8,7 +8,7 @@
 </mat-toolbar>
 
 <mat-toolbar *ngIf="!user">
-    <span>dynARTwork</span>
+    <a mat-button color="primary" routerLink="/home" class="home">dynARTwork</a>
     <span class="example-spacer"></span>
     <a mat-button color="primary" routerLink="/about">About</a>
     <a mat-button color="primary" routerLink="/team">Team</a>

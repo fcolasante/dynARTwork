@@ -11,8 +11,16 @@
   .text-center > * {
     text-align: center;
   }
+  .table{
+    margin: 0 auto;
+  }
+  .head{
+    width: 500px;
+    height: 600px;
+  }
   .example-card {
-    max-width: 500px;
+    width: 500px;
+    height: 650px;
     margin: 0 auto;
   }
   
