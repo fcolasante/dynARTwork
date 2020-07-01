@@ -44,3 +44,18 @@ We think this is a way to attract visitors to the museum on a daily basis, as th
 - [DynARTwork - Current evaluation](https://youtu.be/pHyfPaEfGqk)
 - [DynARTwork - Future plans](https://youtu.be/Mnt6pUkhF1Y)
 - [Live Demo](https://youtu.be/IuAJRV1asrU)
+
+
+## Final Delivery
+
+- [Final Delivery](./3rd_delivery.md)
+### Final Documents
+- [Design](./Final_Design.md)
+- [Architecture](./Final_Architecture.md)
+- [Evaluation](./Final_Evaluation.md)
+### Blog post
+- [Linkedin blog post](./)
+### Presentations
+- [Final Presentation](./)
+### Videos
+- [Demonstration](./)
