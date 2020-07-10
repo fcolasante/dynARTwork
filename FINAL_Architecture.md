@@ -12,7 +12,7 @@ Our architecture is composed by 4 main parts:
 
 1. **Cloud components**: We will use the Google Cloud Platform *(IoT Core, Firestore, Hosting, Pub/Sub, Cloud Vision API and Storage)* to collect and manipulate data.
 2. **Artists' WebApp** (End-user components): This part will be used by the artists. It will have a simple UI/UX interface to hide all tech detail in order to permit artists to build their DyArtwork without worrying about technical details.
-  We use Angular + [Material](https://material.angular.io/) + Firebase to create easily a [PWA](https://web.dev/progressive-web-apps/). It will be responsive and it will be immediately ready for Android / iOS and on the web.
+    We use Angular + [Material](https://material.angular.io/) + Firebase to create easily a [PWA](https://web.dev/progressive-web-apps/). It will be responsive and it will be immediately ready for Android / iOS and on the web.
 3. **Actuators** (IoT elements): We will create an IoT device *(Raspberry PI 0)* which pull DynArtwork from the Cloud and it will redirect this stream to the HDMI output where the museum projector will be connected.
 
 ## Sensors:
@@ -36,8 +36,22 @@ Raspberry Pi 0 W which is connected through mini-HDMI to Projector
 #### Google Storage
 
 #### ESP32
+ESP32 is a series of low-cost, low-power system on a chip microcontrollers with integrated Wi-Fi and dual-mode Bluetooth. [Tech Description](https://duino4projects.com/esp32-wroom-32-esp-wroom-32/).
+
+![](assets/ESP32-WROOM-32-ESP-WROOM-32.png)
 
 #### Grid Eye
+Panasonic Grid-EYE® Infrared Array Sensors are surface mountable and feature 64 thermopile elements in an 8x8 grid format that detect absolute temperatures by infrared radiation. Grid-EYE is able to provide thermal images by measuring actual temperature and temperature gradients. Grid-EYE enables detection of multiple persons, identification of positions and direction of movement, almost independent of ambient light conditions without disturbing privacy as with conventional cameras. The built-in silicon lens provides a viewing angle of 60°. Measurement values are viewable through an I²C interface in 1 or 10 frames per second. The interrupt signal output delivers a quick response to time-critical events for a high degree of flexibility.
+[Description](https://www.mouser.it/new/panasonic/panasonic-grid-eye-infrared-array-sensors/)
 
-#### Raspberry Pi 0 W
+![](assets/grid_eye_schema.png)
+
+- Maxim package description: [link](http://www.farnell.com/datasheets/2286996.pdf)
+- Official datasheet [link](https://cdn.sparkfun.com/assets/4/1/c/0/1/Grid-EYE_Datasheet.pdf)
+
+- Tutorial: [link](https://www.14core.com/wiring-the-ir-thermal-amg88xx-grid-eye-thermopile-infrared-array-sensor-with-microcontroller/)
+
+![](assets/grid_eye_schematics.png)
+
+#### Raspberry Pi 0 W	
 
