@@ -50,9 +50,9 @@ We think this is a way to attract visitors to the museum on a daily basis, as th
 
 - [Final Delivery](./3rd_delivery.md)
 ### Final Documents
-- [Design](./Final_Design.md)
-- [Architecture](./Final_Architecture.md)
-- [Evaluation](./Final_Evaluation.md)
+- [Design](./FINAL_Design.md)
+- [Architecture](./FINAL_Architecture.md)
+- [Evaluation](./FINAL_Evaluation.md)
 ### Blog post
 - [Linkedin blog post](./)
 ### Presentations
