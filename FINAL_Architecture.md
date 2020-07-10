@@ -1,12 +1,16 @@
 # Architecture
-Infrastructure that collects data from sensors/Internet, processes it using Machine Learning and shows the output using video/sound/smell.
+Infrastructure that collects data from sensors, processes it using Machine Learning and shows the output using video.
 
 ![](assets/final_architecture.png)
 
 
-
 Our architecture is composed by 4 main parts:
-1. **Sensors** (IoT element) : It is the input of our DynARTwork algorithm. We use an IoT device performing RIOT-OS to collect informations in the Museum using a  [Panasonic Grid Eye sensor](https://industrial.panasonic.com/ww/products/sensors/built-in-sensors/grid-eye).
+1. **Sensors** (IoT element) : It is the input of our DynARTwork infrastructure. We use an IoT device performing RIOT-OS to collect informations in the Museum using a  [Panasonic Grid Eye sensor](https://industrial.panasonic.com/ww/products/sensors/built-in-sensors/grid-eye).
+
+An ESP32 runs a RIOT-OS custom firmware forked by `emcute` [link](https://riot-os.org/api/group__net__emcute.html).
+Tutorials for riot-os are available in this [repository](https://github.com/fcolasante/thingsboard-tutorial). This article  explains well RIOT-OS + MQTT-SN architecture [link](https://medium.com/@colasante.francesco/2-how-to-develop-an-iot-device-connected-to-thingsboard-using-riot-os-and-mqtt-sn-c4ccbe40dae7).
+
+
 
 ![](assets/2020_0710_160314.png)
 
@@ -92,7 +96,7 @@ Technical Specifications:
 - 802.11 b/g/n wireless LAN
 - Bluetooth 4.1
 - Bluetooth Low Energy (BLE)
-- 
+
 - 1GHz, single-core CPU
 - 512MB RAM
 - Mini HDMI and USB On-The-Go ports
