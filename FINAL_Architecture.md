@@ -28,6 +28,8 @@ Raspberry Pi 0 W which is connected through mini-HDMI to Projector
 
 
 #### Google IoT Core
+Cloud IoT Core is a fully managed service that allows you to easily and securely connect, manage, and ingest data from millions of globally dispersed devices. Cloud IoT Core, in combination with other services on Cloud IoT platform, provides a complete solution for collecting, processing, analyzing, and visualizing IoT data in real time to support improved operational efficiency.
+[Detail](https://cloud.google.com/iot-core).
 
 #### Google Pub-Sub
 Pub/Sub is an asynchronous messaging service that decouples services that produce events from services that process events.
@@ -53,7 +55,17 @@ In push delivery, Pub/Sub initiates requests to your subscriber application to d
 
 #### Google Cloud Vision
 
+SafeSearch Detection detects explicit content such as adult content or violent content within an image. This feature uses five categories (adult, spoof, medical, violence, and racy) and returns the likelihood that each is present in a given image. See the SafeSearchAnnotation page for details on these fields.
+[Tutorial](https://cloud.google.com/vision/docs/detecting-safe-search#vision_safe_search_detection-python).
+
+
 #### Google Storage
+The Buckets resource represents a bucket in Google Cloud Storage. There is a single global namespace shared by all buckets. 
+
+Buckets contain objects which can be accessed by their own methods. In addition to the acl property, buckets contain bucketAccessControls, for use in fine-grained manipulation of an existing bucket's access controls.
+
+A bucket is always owned by the project team owners group.
+[Quickstart](https://cloud.google.com/storage/docs/quickstart-console)
 
 #### ESP32
 ESP32 is a series of low-cost, low-power system on a chip microcontrollers with integrated Wi-Fi and dual-mode Bluetooth. [Tech Description](https://duino4projects.com/esp32-wroom-32-esp-wroom-32/).
@@ -73,5 +85,24 @@ Panasonic Grid-EYE® Infrared Array Sensors are surface mountable and feature 64
 
 ![](assets/grid_eye_schematics.png)
 
-#### Raspberry Pi 0 W	
+#### Raspberry Pi 0 W
+
+Technical Specifications:
+
+- 802.11 b/g/n wireless LAN
+- Bluetooth 4.1
+- Bluetooth Low Energy (BLE)
+- 
+- 1GHz, single-core CPU
+- 512MB RAM
+- Mini HDMI and USB On-The-Go ports
+- Micro USB power
+- HAT-compatible 40-pin header
+- Composite video and reset headers
+- CSI camera connector
+
+Useful links:
+- [Description](https://www.raspberrypi.org/products/raspberry-pi-zero-w/)
+- [Install Raspbian](https://www.raspberrypi.org/documentation/installation/installing-images/)
+- [Piwheels](https://www.piwheels.org/)
 
