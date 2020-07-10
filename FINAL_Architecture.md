@@ -45,9 +45,10 @@ In pull delivery, your subscriber application initiates requests to the Pub/Sub 
 3. The subscriber explicitly calls the acknowledge method, using the returned ack ID to acknowledge receipt.
 
 **Push subscription**:
-The Pub/Sub server sends each message as an HTTPS request to the subscriber application at a pre-configured endpoint.
-The endpoint acknowledges the message by returning an HTTP success status code. A non-success response indicates that the message should be resent.
 In push delivery, Pub/Sub initiates requests to your subscriber application to deliver messages.
+
+1. The Pub/Sub server sends each message as an HTTPS request to the subscriber application at a pre-configured endpoint.
+2. The endpoint acknowledges the message by returning an HTTP success status code. A non-success response indicates that the message should be resent.
 
 
 #### Google Cloud Vision
