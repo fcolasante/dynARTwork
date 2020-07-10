@@ -30,6 +30,25 @@ Raspberry Pi 0 W which is connected through mini-HDMI to Projector
 #### Google IoT Core
 
 #### Google Pub-Sub
+Pub/Sub is an asynchronous messaging service that decouples services that produce events from services that process events.
+
+![](assets/pub_sub_flow.svg)
+- [Overview](https://cloud.google.com/pubsub/docs/overview)
+- [Subscriber overview](https://cloud.google.com/pubsub/docs/subscriber)
+A subscription can use either the pull or push mechanism for message delivery. You can change or configure the mechanism at any time.
+
+**Pull subscription**: 
+In pull delivery, your subscriber application initiates requests to the Pub/Sub server to retrieve messages.
+
+1. The subscribing application explicitly calls the pull method, which requests messages for delivery.
+2. The Pub/Sub server responds with the message (or an error if the queue is empty) , and an ack ID.
+3. The subscriber explicitly calls the acknowledge method, using the returned ack ID to acknowledge receipt.
+
+**Push subscription**:
+The Pub/Sub server sends each message as an HTTPS request to the subscriber application at a pre-configured endpoint.
+The endpoint acknowledges the message by returning an HTTP success status code. A non-success response indicates that the message should be resent.
+In push delivery, Pub/Sub initiates requests to your subscriber application to deliver messages.
+
 
 #### Google Cloud Vision
 
