@@ -24,10 +24,18 @@ Moreover, with the actual configuration, we are not experiencing any expenses fo
 
 
 
+Finally, we can conclude that all the goals for a minimum valuable product that we have set ourselves have been satisfied; in the future, we could extend the project with the use of a solid machine learning processing and the insertion of different ways for data collection
+
+
+
 #### User experience
 
 
 
 
 
-About the user experience, we gave the web application to about 20 people, where they loaded an image of their choice, and we collected opinions about the difficulty of the actions, and the satisfaction about the final result provided by our architecture. Our testers compiled a survey about the application: it turned out that almost all of them have been happy about the easiness with which it is possible to approach to the application, and a majority of people have been **satisfied** also by the final artwork, saying that they expected exactly something like the result given.
+About the user experience, we gave the web application to about 20 people, where they loaded an image of their choice, and we collected opinions about the difficulty of the actions, and the satisfaction about the final result provided by our architecture. 
+
+
+
+Our testers compiled a survey about the application: it turned out that almost all of them have been happy about the easiness with which it is possible to approach to the application, and a majority of people have been **satisfied** also by the final artwork, saying that they expected exactly something like the result given.
