@@ -24,7 +24,7 @@ We have a single instance of Cloud run called `sensors-service`.
 It is a Docker container which runs a **Flask** application with **Gunicorn**, a Python WSGI HTTP Server for UNIX.
 
 We have a single API which is : `POST` on `/`.
-It receave a PubSub message where is wrapped the IoT telemetry and manipulate this raw telemetry data
+It receive a PubSub message where is wrapped the IoT telemetry and manipulate this raw telemetry data
 using `MatPlotlib` and Wand.
 It computes sequentially this 2 step.
 1. Create an heatmap from Raw telemetry data using `Matplotlib`.
