@@ -20,10 +20,14 @@ The results are good: the architecture, despite the **complexity**, performs wel
 
 
 
+Moreover, with the actual configuration, we are not experiencing any expenses for traffic consumption, that would increase in the case of modification of the image processing.
+
+
+
 #### User experience
 
 
 
 
 
-About the user experience, we gave the web application to about 20 people, where they loaded an image of their choice, and we collected opinions about the difficulty of the actions, and the satisfaction about the final result provided by our architecture. All of them have been happy about the easiness with which it is possible to approach to the application, and a majority of people have been **satisfied** also by the final artwork. 
+About the user experience, we gave the web application to about 20 people, where they loaded an image of their choice, and we collected opinions about the difficulty of the actions, and the satisfaction about the final result provided by our architecture. All of them have been happy about the easiness with which it is possible to approach to the application, and a majority of people have been **satisfied** also by the final artwork, saying that they expected exactly something like the result given.
