@@ -4,7 +4,7 @@
 
 **Team**:
 - Francesco Colasante, colasante.1760608@studenti.uniroma1.it, GitHub: [fcolasante](http://github.com/fcolasante), [Linkedin](https://www.linkedin.com/in/francesco-colasante/)
-- Simone Di Tanna, ditanna.1765243@studenti.uniroma1.it, GitHub: [sditanna](http://github.com/sditanna)
+- Simone Di Tanna, ditanna.1765243@studenti.uniroma1.it, GitHub: [sditanna](http://github.com/sditanna), [Linkedin](https://www.linkedin.com/in/simone-di-tanna-7a10221a3/)
 - Emanuele Santo Iaia, iaia.1924549@studenti.uniroma1.it, GitHub: [Lelito-IAIA](http://github.com/Lelito-IAIA), [Linkedin](https://www.linkedin.com/in/emanuele-santo-iaia-4315411a2/)
 
 
