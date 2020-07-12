@@ -1,6 +1,6 @@
 # Final Evaluation
 
-
+Once the project have been finished, we performed some tests, in order to evaluate both the technical quality of the work and the user experience.
 
 
 
@@ -8,11 +8,17 @@
 
 
 
-Once the project have been finished, we performed some tests, in order to evaluate both the technical quality of the work and the user experience. 
 
 
+To do this, we first tried to run private tests (between the member of the group) in two ways: initially "black box" tests on **small parts** of the architecture, to monitor single tasks of the project, in some cases also simulating the parts not in exam:
 
-To do this, we first tried to run private tests (between the member of the group) in two ways: initially "black box" tests on **small parts** of the architecture, to monitor single tasks of the project, in some cases also simulating the parts not in exam, and then we tried with the entire architecture running. 
+- Input part: regarding ESP32, I2C, Grid-Eye connection wires, ports, RIOT code
+- Core part: deployment on Google Cloud, correct usage of GCloud Storage, Pub/Sub, Cloud Run, ecc.
+- Web Application: Firebase and Angular development
+- Output part: we had not the possibility of using a projector, but we displayed the final result on a monitor.
+
+
+and then we tried with the entire architecture running. 
 
 
 
@@ -20,7 +26,7 @@ The results are good: the architecture, despite the **complexity**, performs wel
 
 
 
-Moreover, with the actual configuration, we are not experiencing any expenses for traffic consumption, that would increase in the case of modification of the image processing.
+Moreover, with the actual configuration, we are not experiencing **any expenses** for traffic consumption, that would increase in the case of modification of the image processing.
 
 
 
@@ -34,8 +40,17 @@ Finally, we can conclude that all the goals for a minimum valuable product that 
 
 
 
-About the user experience, we gave the web application to about 20 people, where they loaded an image of their choice, and we collected opinions about the difficulty of the actions, and the satisfaction about the final result provided by our architecture. 
+About the user experience, with respect to our initial plans, we can say that we carried out the offline part: we gave the web application to about 20 people, where they loaded an image of their choice, and we collected opinions about the difficulty of the actions, and the satisfaction about the final result provided by our architecture. 
 
 
 
 Our testers compiled a survey about the application: it turned out that almost all of them have been happy about the easiness with which it is possible to approach to the application, and a majority of people have been **satisfied** also by the final artwork, saying that they expected exactly something like the result given.
+
+
+
+Concerning the online part and the conversion rate of the initial evaluation plan, it is part of our future plans.
+
+
+
+
+
