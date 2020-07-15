@@ -7,9 +7,8 @@ Infrastructure that collects data from sensors, processes it using Machine Learn
 Our architecture is composed by 4 main parts:
 1. **Sensors** (IoT element) : It is the input of our DynARTwork infrastructure. We use an IoT device performing RIOT-OS to collect informations in the Museum using a  [Panasonic Grid Eye sensor](https://industrial.panasonic.com/ww/products/sensors/built-in-sensors/grid-eye).
 
-An ESP32 runs a RIOT-OS custom firmware forked by `emcute` [link](https://riot-os.org/api/group__net__emcute.html).
-Tutorials for riot-os are available in this [repository](https://github.com/fcolasante/thingsboard-tutorial). This article  explains well RIOT-OS + MQTT-SN architecture [link](https://medium.com/@colasante.francesco/2-how-to-develop-an-iot-device-connected-to-thingsboard-using-riot-os-and-mqtt-sn-c4ccbe40dae7).
-
+ A RIOT-OS custom firmware, forked by `emcute`: a MQTT-SN client [link](https://riot-os.org/api/group__net__emcute.html), runs on a ESP32.
+Tutorials for RIOT are available in this [repository](https://github.com/fcolasante/thingsboard-tutorial).Moreover, this article  explains well RIOT-OS + MQTT-SN architecture [link](https://medium.com/@colasante.francesco/2-how-to-develop-an-iot-device-connected-to-thingsboard-using-riot-os-and-mqtt-sn-c4ccbe40dae7).
 
 
 ![](assets/2020_0710_160314.png)
@@ -20,11 +19,52 @@ Tutorials for riot-os are available in this [repository](https://github.com/fcol
 3. **Actuators** (IoT elements): We will create an IoT device *(Raspberry PI 0)* which pull DynArtwork from the Cloud and it will redirect this stream to the HDMI output where the museum projector will be connected.
 
 ## Sensors:
-ESP32 + I2C  + GRID EYE, CONNECTION WIRES, ETC... + DATASHEET + MAXIM ONE-WIRE
+The Grid Eye Sensor is connected directly to the esp32 through the `i2c` interface.
+We bought a grid eye with a Maxim package that adds a One-wire interface to the sensor to connect the sensor even over long distances using a 6-wire RJ11 cable.
 
-PORTS + CODE
+This choice was dictated by the reduced timing and the availability of the sensor.
+We do not need to cover large distances as the sensor is connected directly to the esp32 which thanks to its versatility and its small size can be positioned anywhere.
+
+In order to make the sensor work with the maxim package we had to reverse engineer the schematics to understand how to directly connect the grid eye to the esp32.
+
+ESP32 has 2 different `i2c`channels and we used the `i2c_dev(0)` using pins:
+- `I2C0_SCL` = `GPIO22`
+- `I2C0_SDA` = `GPIO21`
+
+The I2C signal lines SDA/SCL need external pull-up resistors which connect the lines to the positive voltage supply Vcc. The I2C driver implementation should enable the pin's internal pull-up resistors. There are however some use cases for which the internal pull resistors are not strong enough and the I2C bus will show faulty behavior. This can for example happen when connecting a logic analyzer which will raise the capacitance of the bus. In this case you should make sure you connect external pull-up resistors to both I2C bus lines.
+[RIOT i2c docs](https://riot-os.org/api/group__drivers__periph__i2c.html).
+
+The pull-up resistors depend on the bus speed. Some typical values are:
+Normal mode: 10kΩ
+Fast mode: 2kΩ
+Fast plus mode: 2kΩ
+
+ESP32’s internal pull-ups are in the range of tens of kOhm, which is, in most cases, insufficient for use as I2C pull-ups. Users are advised to use external pull-ups with values described in the I2C specification. [More details](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/i2c.html).
 
 
+RIOT-OS has a simple interface in order to read/write datas on i2c registers.
+This is stub of code which handles grid-eye telemetry.
+```c
+    i2c_t dev = I2C_DEV(0);
+    i2c_acquire(dev);
+    uint8_t data[128];
+    int col;
+    int result[64];
+    while(1){
+        int retval = i2c_read_regs(dev, 0x68, 0x80,data, 128, 0);
+        i2c_release(dev);
+        printf("Retval=%d\n", retval);
+        for(int i = 0, col = 0; i<128;i+=2, col++){
+            uint8_t raw = data[i];
+            uint tmp = (uint8_t) raw*0.25;
+            result[col] = tmp;
+            //printf("i=%d, raw = %u, tmp = %u\n", i, raw, tmp);
+            printf("%d ", tmp);
+            if((col+1)%8==0) printf("\n");
+        }
+    ...
+    }
+```
 
 ## Actuators:
 Raspberry Pi 0 W which is connected through mini-HDMI to Projector

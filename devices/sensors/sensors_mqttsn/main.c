@@ -355,7 +355,7 @@ static int cmd_telemetry(int argc, char ** argv){
 
         printf("Published %i bytes to topic '%s [%i] msg: %s'\n",
                 (int)strlen(buffer), t.name, t.id, buffer);
-        xtimer_sleep(5);
+        xtimer_sleep(30);
     }
     UNUSED(col);
     UNUSED(result);

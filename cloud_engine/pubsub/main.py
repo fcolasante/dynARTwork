@@ -67,10 +67,6 @@ def index():
             print(f'error: {msg}')
             return f'Bad Request: {msg}', 413
 
-        file_name="test.jpg"
-        bucket_name = "dynartwork-277815.appspot.com"
-
-        blob = storage_client.bucket(bucket_name).get_blob(file_name)
         print(data)
 
         try:
