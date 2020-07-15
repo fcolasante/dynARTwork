@@ -7,8 +7,8 @@ Infrastructure that collects data from sensors, processes it using Machine Learn
 Our architecture is composed by 4 main parts:
 1. **Sensors** (IoT element) : It is the input of our DynARTwork infrastructure. We use an IoT device performing RIOT-OS to collect informations in the Museum using a  [Panasonic Grid Eye sensor](https://industrial.panasonic.com/ww/products/sensors/built-in-sensors/grid-eye).
 
- A RIOT-OS custom firmware, forked by `emcute`: a MQTT-SN client [link](https://riot-os.org/api/group__net__emcute.html), runs on a ESP32.
-Tutorials for RIOT are available in this [repository](https://github.com/fcolasante/thingsboard-tutorial).Moreover, this article  explains well RIOT-OS + MQTT-SN architecture [link](https://medium.com/@colasante.francesco/2-how-to-develop-an-iot-device-connected-to-thingsboard-using-riot-os-and-mqtt-sn-c4ccbe40dae7).
+ A RIOT-OS custom firmware, forked by `emcute`: a [MQTT-SN client](https://riot-os.org/api/group__net__emcute.html), runs on a ESP32.
+Tutorials for RIOT are available in this [repository](https://github.com/fcolasante/thingsboard-tutorial).Moreover, this article  explains well RIOT-OS + MQTT-SN architecture [(link)](https://medium.com/@colasante.francesco/2-how-to-develop-an-iot-device-connected-to-thingsboard-using-riot-os-and-mqtt-sn-c4ccbe40dae7).
 
 
 ![](assets/2020_0710_160314.png)
@@ -67,8 +67,14 @@ This is stub of code which handles grid-eye telemetry.
 ```
 
 ## Actuators:
-Raspberry Pi 0 W which is connected through mini-HDMI to Projector
+Raspberry Pi 0 W which is connected through mini-HDMI to Projector. 
+It has the WiFi interface and 2 micro-usb ports, where you can connect mouse and keyboard.
 
+We decided to migrate from stm32 to raspberry pi for ease of use and development.
+
+Thanks to its community, raspberry pi provides a piwhells repository where all the pip packages already compiled for its architecture are contained.
+
+In this way, we could develop the rasp_polling script easily on a normal pc and then exported it to the raspberry.
 
 
 #### Google IoT Core
@@ -130,6 +136,9 @@ Panasonic Grid-EYE® Infrared Array Sensors are surface mountable and feature 64
 ![](assets/grid_eye_schematics.png)
 
 #### Raspberry Pi 0 W
+
+To configure and manage the board we used `ssh` and the `scp` command.
+
 
 Technical Specifications:
 
