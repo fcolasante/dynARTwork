@@ -54,8 +54,8 @@ We think this is a way to attract visitors to the museum on a daily basis, as th
 - [Architecture](./FINAL_Architecture.md)
 - [Evaluation](./FINAL_Evaluation.md)
 ### Blog post
-- [Linkedin blog post](./)
+- [Medium blog post](https://medium.com/@emanuelesantoiaia/live-your-art-live-dynartwork-bbd1e1cb353c)
 ### Presentations
 - [Final Presentation](./)
 ### Videos
-- [Demonstration](./)
+- [Demonstration](https://www.youtube.com/watch?v=_p9PBwMa0lE&feature=youtu.be)
