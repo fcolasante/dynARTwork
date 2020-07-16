@@ -56,6 +56,6 @@ We think this is a way to attract visitors to the museum on a daily basis, as th
 ### Blog post
 - [Medium blog post](https://medium.com/@emanuelesantoiaia/live-your-art-live-dynartwork-bbd1e1cb353c)
 ### Presentations
-- [Final Presentation](./)
+- [Final Presentation](./Final_Presentation.pdf)
 ### Videos
 - [Demonstration](https://www.youtube.com/watch?v=_p9PBwMa0lE&feature=youtu.be)
