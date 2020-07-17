@@ -22,7 +22,21 @@ and then we tried with the entire architecture running.
 
 
 
-The results are good: the architecture, despite the **complexity**, performs well in all tasks we designed, and the flow of data is linear. To execute an entire run, from the collection of data to the final result, we need just some seconds, that should be a good result given that we pass through a lot of different nodes during the run.
+
+
+At the start of the implementation phase, we were focused on an edge deployment. We tried to do the part of image processing on our Raspberry PI, but the results were awful: because of the low computational power, an entire flow of data, from the grid eye to the image displayed, took about 10 minutes, an unthinkable time. We tried different images, with the hope that the time could depend from the size, but the results were bad, again. So we moved to a cloud approach: here we give a sketch of our tests. We tested different images with both approaches, and the table shows the time of execution.
+
+
+
+*TABELLA*
+
+
+
+
+
+
+
+As we can see, the final results are good: the architecture cloud-based, despite the **complexity**, performs well in all tasks we designed, and the flow of data is linear. To execute an entire run, from the collection of data to the final result, we need just some seconds, that should be a good result given that we pass through a lot of different nodes during the run.
 
 
 
