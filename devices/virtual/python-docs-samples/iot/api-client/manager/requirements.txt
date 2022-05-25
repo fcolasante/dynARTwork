@@ -6,4 +6,4 @@ google-auth==1.15.0
 google-cloud-iot==1.0.0
 google-cloud-pubsub==1.5.0
 paho-mqtt==1.5.0
-pyjwt==1.7.1
+pyjwt==2.4.0
